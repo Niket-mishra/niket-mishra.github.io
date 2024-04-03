@@ -2,182 +2,227 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="icon" type="image/x-icon" href="logo.png">
-    <link rel="stylesheet" href="stylesheet.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-
+    <title>Niket M.
+    </title>
+    <link rel="icon" type="image/x-icon" href="/images/Iket_m.__3_-removebg-preview.png">
+    <link rel="stylesheet" href="style.css"/>
+    <script src="https://kit.fontawesome.com/831e2df27c.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header class="header">
-        <a href="#" class="logo">Niket Mishra.</a> 
-    <nav class="navbar">
-        <a href="#home" style="--i:1" class="active">Home</a>
-        <a href="#about" style="--i:2">About</a>
-        <a href="#skills" style="--i:3">Skill</a>
-        <a href="#services" style="--i:4">Portfolio</a>
-        <a href="#contact" style="--i:5">Contact</a>
-    </nav>
-</header>
-<section class="home" id="home">
-    <div class="home-content">
-<h3>Hello, It's Me</h3>
-<h1>Niket Mishra</h1>
-<h3>And I'm a&nbsp;<span class="text"></span></h3>
-<p>I'm a Full Stack Developer with Extensive Experience for over 1 years.
-    <br>Expertise is to create and Design Websites, Frontend Design and Backend.
-</p>
-<div class = "home-sci">
-    <a href="#" style="--i:7"><i class='bx bxl-facebook'></i></a>
-    <a href="#" style="--i:8"><i class='bx bxl-instagram'></i></a>
-    <a href="#" style="--i:9"><i class='bx bxl-whatsapp'></i></a>
-    <a href="#" style="--i:10"><i class='bx bxl-github'></i></a>
-
-</div>
-<a href="#" class="btn-box">More About Me</a>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="images/l.png" class="logo">
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+                </ul>
+                <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+            </nav>
+            <div class="header-text">
+                <p>Full Stack Developer</p>
+                <h1>I'm <span>Niket Mishra</span><br>from India</h1>
+            </div>
+        </div>
     </div>
-    <span class="home-imgHover"></span>
-</section>
 
-<section class="about" id="about">
-    <div class="about-img">
-        <img src="logo.png">
-    </div>
-    <div class="about-text">
-        <h2>About <span>Me</span></h2>
-        <h4>Full Stack Developer</h4>
-        <p>I am a passionate and versatile Full Stack Developer with a decade of experience in crafting robust and user-friendly web applications. 
-            My journey began with a fascination for both front-end and back-end technologies,
-            and I've honed my skills across the entire development stack. 
-            Let me take you through my journey
-        </p>
-        <a href="#" class="btn-box">More About Me</a>
-    </div>
-</section>
+<!-- About Section -->
 
-<section>
-    <div class="services" id="services">
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="images/me.png">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About <span>Me</span></h1>
+                    <p>I am a fresher pursuing engineering in
+                        computer science with a passion for
+                        design automation and machine
+                        intelligence. I am looking for an
+                        opportunity to apply my knowledge
+                        and skills in a challenging and
+                        rewarding environment. I am a quick
+                        learner, a problem-solver and a team
+                        player who can contribute to the
+                        success of your organization.</p>
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                        <p class="tab-links" onclick="opentab('education')">Education</p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>HTML 5</span><br>Experienced and used on Multiple Projects</li>
+                            <li><span>CSS 3</span><br>Intermediate and Used for Limited Projects</li>
+                            <li><span>Java</span><br>Expertised and have knowledge upto Advance level</li>
+                            <li><span>JavaScript</span><br>Intermediate and Used on Very Limited Projects</li>
+                            <li><span>SpringBoot</span><br>Beginner and Still in Learning Phase</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="experience">
+                        <ul>
+                            <li><span>2023 - Current</span><br>Internship at Swabhav Venturelabs</li>
+                            <li><span>2019 - 2023</span><br>Web App Development</li>
+                            <li><span>2017 - 2019</span><br>Building Android / IOS Applications</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li><span>2020 - Current</span><br><strong>B.Tech</strong> - St John college of Engineering and Management</li>
+                            <li><span>2018 - 2020</span><br><strong>HSC</strong> - Shri T.P. Bhatia College of Science</li>
+                            <li><span>2017 - 2018</span><br><strong>SSC</strong> - SMT J.B. Khot High School No 2.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ---------------------services-------------------- -->
+    <div id="services">
         <div class="container">
             <h1 class="sub-title">My <span>Services</span></h1>
             <div class="services-list">
                 <div>
-                    <i class="bx bx-code" style="color: #0ef;"></i>
-                    <h2>UI/UX Design</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                       exercitationem facilis? Ex fugiat, maiores est a dolores minus omnis placeat ipsam totam dignissimos.</p>
-                    <a href="#" class="read">Learn More</a>
+                    <i class="fa fa-code"></i>
+                    <h2>Frontend Development</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga repellat enim quos explicabo illum eaque ipsum reiciendis, reprehenderit cumque, numquam itaque ipsam quasi aspernatur officiis est assumenda eligendi iste dolorem.</p>
+                    <a href="https://github.com/Niket-mishra/Frontend-Projects/tree/main">Learn More</a>
                 </div>
                 <div>
-                    <i class="bx bx-crop" style="color: #0ef;"></i>
-                    <h2>UI/UX Design</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        reiciendis nesciunt, rerum exercitationem facilis? Ex fugiat, maiores est a dolores minus omnis placeat ipsam totam dignissimos.</p>
-                    <a href="#" class="read">Learn More</a>
+                    <i class="fa-solid fa-crop"></i>
+                    <h2>Backend Development</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga repellat enim quos explicabo illum eaque ipsum reiciendis, reprehenderit cumque, numquam itaque ipsam quasi aspernatur officiis est assumenda eligendi iste dolorem.</p>
+                    <a href="https://github.com/Niket-mishra/Backend-Projects">Learn More</a>
                 </div>
                 <div>
-                    <i class='bx bxl-apple' style="color: #0ef;"></i></i>
-                    <h2>UI/UX Design</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur
-                         reiciendis nesciunt, rerum exercitationem facilis? Ex fugiat, maiores est a dolores minus omnis placeat ipsam totam dignissimos.</p>
-                    <a href="#" class="read">Learn More</a>
+                    <i class="fa-brands fa-app-store"></i>
+                    <h2>Database & Version Control</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga repellat enim quos explicabo illum eaque ipsum reiciendis, reprehenderit cumque, numquam itaque ipsam quasi aspernatur officiis est assumenda eligendi iste dolorem.</p>
+                    <a href="https://github.com/Niket-mishra/Full-Stack-Projects">Learn More</a>
                 </div>
             </div>
         </div>
     </div>
-</section>
+    <!-- ----------------portfolio-------------------->
 
-<h1 class="sub-title">Technical <span>Skills</span></h1>
-<section>
-    <div class="container" id="skills">
-
-            <div class="services-list">
-              <article>
-                <div>
-                    <i class='bx bxl-html5' style="color: #e34c26;"></i>
-                  <h3>HTML 5</h3>
-                  <p>Experienced</p>
+    <div id="portfolio">
+        <div class="container">
+            <h1 class="sub-title">My <span>Work</span></h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="images/work-1.png" alt="">
+                    <div class="layer">
+                        <h3>Social Media App</h3>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque laboriosam esse voluptatibus temporibus voluptas sunt suscipit sapiente! Earum voluptatem ut nisi numquam quasi explicabo ullam, fugit quos voluptate tenetur quaerat!</p>
+                        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
                 </div>
-              </article>
-      
-              <article>
-                <div>
-                    <i class='bx bxl-spring-boot' style="color: #8BC34A;"></i>
-                  <h3>SpringBoot</h3>
-                  <p>Experienced</p>
+                <div class="work">
+                    <img src="images/work-2.png" alt="">
+                    <div class="layer">
+                        <h3>Music App</h3>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque laboriosam esse voluptatibus temporibus voluptas sunt suscipit sapiente! Earum voluptatem ut nisi numquam quasi explicabo ullam, fugit quos voluptate tenetur quaerat!</p>
+                        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
                 </div>
-              </article>
-      
-              <article>
-                <div>
-                    <i class='bx bxl-javascript' style="color: #f0db4f ;"></i>
-                  <h3>JavaScript</h3>
-                  <p>Experienced</p>
+                <div class="work">
+                    <img src="images/work-3.png" alt="">
+                    <div class="layer">
+                        <h3>Online Shopping App</h3>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque laboriosam esse voluptatibus temporibus voluptas sunt suscipit sapiente! Earum voluptatem ut nisi numquam quasi explicabo ullam, fugit quos voluptate tenetur quaerat!</p>
+                        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
                 </div>
-              </article>
-      
-              <article>
-                <div>
-                    <i class='bx bxl-css3' style="color: #264de4 ;"></i>
-                  <h3>CSS 3</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-      
-              <article>
-                <div>
-                    <i class='bx bxl-java' style="color: #5382a1;"></i>
-                  <h3>JAVA</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
             </div>
-            </div>
-</section>
-
-
-
-
-
-<!-- Contact Section -->
-<section class="contact" id="contact">
-    <div class="contact-text">
-        <h2>Contact <span>Me</span></h2>
-        <h4>Let's Work Together</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At repellendus unde nisi libero eius veniam, quibusdam, sunt voluptatum obcaecati sed eaque voluptatibus ipsum. Repudiandae ab dolores voluptatibus, fugiat atque magni.</p>
-        <div class="contact-list">
-            <li><i class='bx bxs-send' style="color: #0ef;"></i>&nbsp;<a href="mailto://niketmishraofficial@gmail.com">Send Email</a></li>
-            <li><i class='bx bxs-phone' style="color: #0ef;"></i>&nbsp;<a href="tel://+919021605329">Call Now</a></li>
-        </div>
-        <div class="contact-icons">
-            <a href=""><i class='bx bxl-facebook-circle bx-flashing' ></i></a>
-            <a href=""><i class='bx bxl-twitter bx-flashing' ></i></a>
-            <a href=""><i class='bx bxl-instagram bx-flashing' ></i></i></a>
-            <a href=""><i class='bx bxl-github bx-flashing' ></i></a>
+            <a href="https://github.com/Niket-mishra?tab=repositories" class="btn">See more</a>
         </div>
     </div>
-    <div class="contact-form">
-        <form action="">
-            <input type="" placeholder="Enter Your Name" required>
-            <input type="email" placeholder="Enter Your Email" required>
-            <input type="" placeholder="Enter Your Subject" required>
+<!-- ---------------------contact-------------------- -->
 
-            <textarea name="" id="" cols="40" rows="10" placeholder="Enter Your Message" required></textarea>
-            <input type="submit" value="submit" class="send">
-        </form>
+
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact <span>Me</span></h1>
+                <p><i class="fa-solid fa-paper-plane"></i><a href="mailto://niketmishraofficial@gmail.com"> niketmishraofficial@gmail.com</a></p>
+                <p><i class="fa-solid fa-phone"></i> <a href="tel://+919021605329"> +91 90216 05329</a></p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/niketmishraofficial/"><i class='fab fa-facebook'></i></a>
+                    <a href="https://twitter.com/Niket_Mishra_"><i class='fab fa-twitter-square'></i></a>
+                    <a href="https://www.instagram.com/_n.i.k.e.t_/"><i class='fab fa-instagram'></i></a>
+                    <a href="https://github.com/Niket-mishra/"><i class='fab fa-github'></i></a>
+                </div>
+                <a href="images/my-cv.pdf" download class="btn btn2">Download CV</a>
+            </div>
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
     </div>
-</section>
-
-<a href="#" class="top"><i class='bx bx-chevrons-up'></i></a>
-
-
-
+    <div class="copyright">
+        <p>Copyright &copy; Niket M. Made with <i class="fa-solid fa-heart"></i> using <i class="fa-brands fa-html5"></i> HTML & <i class="fa-brands fa-css3-alt"></i> CSS</p>
+    </div>
+</div>
 
 
-<script src="custom.js"></script>
+
+
+
+
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+        function opentab(tabname){
+            for (tablink of tablinks) {
+                tablink.classList.remove("active-link");
+            }
+            for (tabcontent of tabcontents) {
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+    </script>
+    <script>
+        var sidemenu = document.getElementById("sidemenu");
+
+        function openmenu(){
+            sidemenu.style.right="0";
+        }
+        function closemenu(){
+            sidemenu.style.right="-200";
+        }
+    </script>
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwvc7wMW5GUupf53pKC5BZ6zfPcY2cPteUo_CmcayuIm-11e9IqYIOytrZHaLqyyLlj4g/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const msg = document.getElementById("msg")
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        msg.innerHTML = "Message sent Successfully"
+        setTimeout(function () {
+            msg.innerHTML = ""
+        },5000)
+        form.reset()
+      })
+      .catch(error => console.error('Error!', error.message))
+  })
+    </script>
 </body>
-
-<footer class="last-text"> Designed with love by Niket Mishra &copy; 2024</footer>
 </html>
