@@ -1172,15 +1172,15 @@
                     <form>
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" required>
+                            <input type="text" id="name" name="name">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" required>
+                            <input type="email" id="email" name="email">
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" required></textarea>
+                            <textarea id="message" name="message"></textarea>
                         </div>
                         <button type="submit" class="btn">Send Message</button>
                     </form>
@@ -1327,6 +1327,9 @@
         window.addEventListener('load', animateOnScroll);
         
         // Form submission handling
+       const scriptURL = 'https://script.google.com/macros/s/AKfycbwvc7wMW5GUupf53pKC5BZ6zfPcY2cPteUo_CmcayuIm-11e9IqYIOytrZHaLqyyLlj4g/exec';
+
+        // Form submission handling
         const contactForm = document.querySelector('.contact-form form');
         if (contactForm) {
             contactForm.addEventListener('submit', (e) => {
@@ -1342,11 +1345,26 @@
                 }
                 
                 // Here you would normally send the form data to a server
-                showSnackbar('Your message has been sent successfully!');
-                contactForm.reset();
-            });
-        }
+                 const formData = new FormData(contactForm);
 
+    // Send the data to the Google Apps Script URL using a fetch request
+    fetch(scriptURL, { method: 'POST', body: formData })
+      .then(response => {
+        // Check if the request was successful
+        if (response.ok) {
+          showSnackbar('Your message has been sent successfully!');
+          contactForm.reset();
+        } else {
+          showSnackbar('There was an error sending your message.', true);
+          console.error('Fetch error:', response.statusText);
+        }
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        showSnackbar('An unexpected error occurred.', true);
+      });
+  });
+}
         const downloadCvButtons = document.querySelectorAll('#nav-download-cv, #top-download-cv');
 
          downloadCvButtons.forEach(button => {
