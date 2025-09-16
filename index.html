@@ -3,226 +3,1363 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Niket M.
-    </title>
-    <link rel="icon" type="image/x-icon" href="/images/Iket_m.__3_-removebg-preview.png">
-    <link rel="stylesheet" href="style.css"/>
-    <script src="https://kit.fontawesome.com/831e2df27c.js" crossorigin="anonymous"></script>
+<!-- Primary Meta Tags -->
+<title>Niket Mishra | Developer, Creator & Visionary Strategist</title>
+<meta name="title" content="Niket Mishra | Developer, Creator & Visionary Strategist">
+<meta name="description" content="Explore the personal portfolio of Niket Mishra—passionate about design automation, machine intelligence, and empowering creators through modular, emotionally resonant web experiences.">
+<meta name="keywords" content="Niket Mishra, web developer, machine intelligence, design automation, GitHub portfolio, modular layouts, creator monetization">
+<meta name="author" content="Niket Mishra">
+
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://niket-mishra.github.io/">
+<meta property="og:title" content="Niket Mishra | Developer, Creator & Visionary Strategist">
+<meta property="og:description" content="Explore the personal portfolio of Niket Mishra—passionate about design automation, machine intelligence, and empowering creators through modular, emotionally resonant web experiences.">
+<meta property="og:image" content="https://niket-mishra.github.io/author.jpg">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://niket-mishra.github.io/">
+<meta name="twitter:title" content="Niket Mishra | Developer, Creator & Visionary Strategist">
+<meta name="twitter:description" content="Explore the personal portfolio of Niket Mishra—passionate about design automation, machine intelligence, and empowering creators through modular, emotionally resonant web experiences.">
+<meta name="twitter:image" content="https://niket-mishra.github.io/author.jpg">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="manifest" href="site.webmanifest">
+
+
+    <style>
+        /* Base Styles & Variables */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --accent: #8b5cf6;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --dark-alt: #334155;
+            --gray: #64748b;
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.8);
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --text-color: #f8fafc;
+            --input-bg: rgba(255, 255, 255, 0.07);
+            --success: #10b981;
+            --error: #ef4444;
+            --social-bg: rgba(255, 255, 255, 0.1);
+            --social-border: rgba(255, 255, 255, 0.2);
+        }
+
+        .light-mode {
+            --bg: #f1f5f9;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --glass: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --dark: #1e293b;
+            --light: #1e293b;
+            --gray: #64748b;
+            --text-color: #1e293b;
+            --input-bg: rgba(0, 0, 0, 0.05);
+            --social-bg: rgba(0, 0, 0, 0.05);
+            --social-border: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            position: relative;
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 70px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 5px;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            color: white;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-color);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .logo span {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            font-size: 1rem;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .nav-btns {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            width: 50px;
+            height: 26px;
+            border-radius: 50px;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 0 3px;
+        }
+
+        .theme-toggle i {
+            font-size: 14px;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .theme-toggle .toggle-thumb {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            transition: var(--transition);
+            left: 3px;
+        }
+
+        .light-mode .theme-toggle .toggle-thumb {
+            transform: translateX(24px);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+            z-index: 1001;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 10rem;
+            padding-bottom: 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            opacity: 0.1;
+            filter: blur(40px);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -200px;
+            left: -200px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            opacity: 0.1;
+            filter: blur(40px);
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text {
+            flex: 1;
+            padding-right: 2rem;
+        }
+
+        .hero-text h1 {
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            animation: fadeInRight 1.5s ease;
+        }
+
+        .hero-image img {
+            max-width: 85%;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            border: 5px solid var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            animation: morphing 10s ease-in-out infinite;
+        }
+
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .floating-icons div {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--glass);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .floating-icons div:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-icons div:nth-child(2) {
+            top: 60%;
+            left: -5%;
+            animation-delay: 1s;
+        }
+
+        .floating-icons div:nth-child(3) {
+            top: 40%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-icons div:nth-child(4) {
+            bottom: 20%;
+            right: 0;
+            animation-delay: 3s;
+        }
+
+        /* About Section */
+        .about {
+            position: relative;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-box {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-box h3 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Skills Section */
+        .skills {
+            position: relative;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 1.8rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-card i {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .skill-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .project-tags span {
+            background: var(--glass);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Contact Section */
+        .contact {
+            position: relative;
+        }
+
+        .contact-container {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-form {
+            flex: 1;
+            background: var(--card-bg);
+            padding: 2.2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--input-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            font-size: 1rem;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            color: var(--text-color);
+            padding: 3rem 0 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-social {
+            margin-bottom: 2rem;
+        }
+
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: var(--social-bg);
+            color: var(--text-color);
+            font-size: 1.3rem;
+            margin: 0 0.5rem;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: var(--transition);
+            border: 1px solid var(--social-border);
+        }
+
+        .footer-social a:hover {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+
+          /* Snackbar Notification */
+        .snackbar {
+            visibility: hidden;
+            min-width: 300px;
+            background-color: var(--dark);
+            color: var(--light);
+            text-align: center;
+            border-radius: 10px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1002;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-left: 5px solid var(--success);
+            transition: opacity 0.3s, bottom 0.3s;
+            opacity: 0;
+        }
+
+        .snackbar.error {
+            border-left: 5px solid var(--error);
+        }
+
+        .snackbar.show {
+            visibility: visible;
+            bottom: 50px;
+            opacity: 1;
+        }
+
+        .light-mode .snackbar {
+            background-color: white;
+            color: var(--dark);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes morphing {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
+            50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+            75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 2rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content,
+            .about-content,
+            .contact-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 3rem;
+            }
+            
+            h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .floating-icons {
+                display: none;
+            }
+            
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 4rem 0;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--card-bg);
+                backdrop-filter: blur(10px);
+                transition: 0.5s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-right: 1px solid var(--glass-border);
+                z-index: 1000;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+            }
+            
+            nav ul li {
+                margin: 1.5rem 0;
+            }
+            
+            .hero {
+                padding-top: 8rem;
+                padding-bottom: 4rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .stat-box {
+                padding: 1.2rem;
+            }
+            
+            .stat-box h3 {
+                font-size: 2rem;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                gap: 2rem;
+            }
+            
+            .contact-form {
+                padding: 1.5rem;
+            }
+            
+            .scroll-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-text p {
+                font-size: 1rem;
+            }
+            
+            .hero-image img {
+                max-width: 100%;
+            }
+            
+            .about-content {
+                gap: 2rem;
+            }
+            
+            .contact-container {
+                gap: 1.5rem;
+            }
+            
+            .footer-social a {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+                margin: 0 0.3rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div id="header">
-        <div class="container">
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">Niket M<span>.</span></div>
+            <div class="nav-btns">
+                <div class="theme-toggle" id="theme-toggle">
+                    <div class="toggle-thumb"></div>
+                </div>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
             <nav>
-                <img src="images/l.png" class="logo">
-                <ul id="sidemenu">
-                    <li><a href="#header">Home</a></li>
+                <ul>
+                    <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
                 </ul>
-                <i class="fa-solid fa-bars" onclick="openmenu()"></i>
             </nav>
-            <div class="header-text">
-                <p>Full Stack Developer</p>
-                <h1>I'm <span>Niket Mishra</span><br>from India</h1>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Hi, I'm Niket Mishra</h1>
+                <p>I create immersive digital experiences with cutting-edge technology and innovative design. Let's build something amazing together.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="author.jpg" alt="Niket Mishra">
+                <div class="floating-icons">
+                    <div><i class="fab fa-html5"></i></div>
+                    <div><i class="fab fa-css3-alt"></i></div>
+                    <div><i class="fab fa-js"></i></div>
+                    <div><i class="fab fa-react"></i></div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-<!-- About Section -->
-
-    <div id="about">
+    <!-- About Section -->
+    <section id="about" class="about">
         <div class="container">
-            <div class="row">
-                <div class="about-col-1">
-                    <img src="images/me.png">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm Niket, a creative developer based in Mumbai specializing in building exceptional digital experiences. My journey in web development started over 2 years ago, and I've since worked with various startups and companies to create impactful web solutions.</p>
+                    <p>I believe in writing clean, efficient code and creating intuitive user interfaces that solve real problems. When I'm not coding, you can find me exploring new technologies, contributing to open source, or hiking in the beautiful Bay Area.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-box">
+                            <h3>02+</h3>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>12+</h3>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>04+</h3>
+                            <p>Happy Clients</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="about-col-2">
-                    <h1 class="sub-title">About <span>Me</span></h1>
-                    <p>I am a fresher pursuing engineering in
-                        computer science with a passion for
-                        design automation and machine
-                        intelligence. I am looking for an
-                        opportunity to apply my knowledge
-                        and skills in a challenging and
-                        rewarding environment. I am a quick
-                        learner, a problem-solver and a team
-                        player who can contribute to the
-                        success of your organization.</p>
-                    <div class="tab-titles">
-                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
-                        <p class="tab-links" onclick="opentab('education')">Education</p>
-                    </div>
-                    <div class="tab-contents active-tab" id="skills">
-                        <ul>
-                            <li><span>HTML 5</span><br>Experienced and used on Multiple Projects</li>
-                            <li><span>CSS 3</span><br>Intermediate and Used for Limited Projects</li>
-                            <li><span>Java</span><br>Expertised and have knowledge upto Advance level</li>
-                            <li><span>JavaScript</span><br>Intermediate and Used on Very Limited Projects</li>
-                            <li><span>SpringBoot</span><br>Beginner and Still in Learning Phase</li>
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="experience">
-                        <ul>
-                            <li><span>2023 - Current</span><br>Internship at Swabhav Venturelabs</li>
-                            <li><span>2019 - 2023</span><br>Web App Development</li>
-                            <li><span>2017 - 2019</span><br>Building Android / IOS Applications</li>
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="education">
-                        <ul>
-                            <li><span>2020 - Current</span><br><strong>B.Tech</strong> - St John college of Engineering and Management</li>
-                            <li><span>2018 - 2020</span><br><strong>HSC</strong> - Shri T.P. Bhatia College of Science</li>
-                            <li><span>2017 - 2018</span><br><strong>SSC</strong> - SMT J.B. Khot High School No 2.</li>
-                        </ul>
-                    </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80" alt="Teamwork">
                 </div>
             </div>
         </div>
-    </div>
-    <!-- ---------------------services-------------------- -->
-    <div id="services">
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
         <div class="container">
-            <h1 class="sub-title">My <span>Services</span></h1>
-            <div class="services-list">
-                <div>
-                    <i class="fa fa-code"></i>
-                    <h2>Frontend Development</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga repellat enim quos explicabo illum eaque ipsum reiciendis, reprehenderit cumque, numquam itaque ipsam quasi aspernatur officiis est assumenda eligendi iste dolorem.</p>
-                    <a href="https://github.com/Niket-mishra/Frontend-Projects/tree/main">Learn More</a>
+            <h2>My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <i class="fab fa-html5"></i>
+                    <h3>HTML/CSS</h3>
+                    <p>Creating semantic HTML structure and stylish CSS layouts with modern techniques like Flexbox and Grid.</p>
                 </div>
-                <div>
-                    <i class="fa-solid fa-crop"></i>
-                    <h2>Backend Development</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga repellat enim quos explicabo illum eaque ipsum reiciendis, reprehenderit cumque, numquam itaque ipsam quasi aspernatur officiis est assumenda eligendi iste dolorem.</p>
-                    <a href="https://github.com/Niket-mishra/Backend-Projects">Learn More</a>
+                <div class="skill-card">
+                    <i class="fab fa-js"></i>
+                    <h3>JavaScript</h3>
+                    <p>Building interactive web experiences with vanilla JavaScript and modern frameworks.</p>
                 </div>
-                <div>
-                    <i class="fa-brands fa-app-store"></i>
-                    <h2>Database & Version Control</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga repellat enim quos explicabo illum eaque ipsum reiciendis, reprehenderit cumque, numquam itaque ipsam quasi aspernatur officiis est assumenda eligendi iste dolorem.</p>
-                    <a href="https://github.com/Niket-mishra/Full-Stack-Projects">Learn More</a>
+                <div class="skill-card">
+                    <i class="fab fa-react"></i>
+                    <h3>React</h3>
+                    <p>Developing component-based UIs with React, Redux, and related ecosystems.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Responsive Design</h3>
+                    <p>Creating websites that work beautifully across all device sizes and browsers.</p>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- ----------------portfolio-------------------->
+    </section>
 
-    <div id="portfolio">
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
         <div class="container">
-            <h1 class="sub-title">My <span>Work</span></h1>
-            <div class="work-list">
-                <div class="work">
-                    <img src="images/work-1.png" alt="">
-                    <div class="layer">
-                        <h3>Social Media App</h3>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque laboriosam esse voluptatibus temporibus voluptas sunt suscipit sapiente! Earum voluptatem ut nisi numquam quasi explicabo ullam, fugit quos voluptate tenetur quaerat!</p>
-                        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+            <h2>My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1772&q=80" alt="Project 1">
+                    </div>
+                    <div class="project-info">
+                        <h3>E-Commerce Website</h3>
+                        <p>A fully responsive e-commerce platform built with React and Node.js.</p>
+                        <div class="project-tags">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                        <a href="#" class="btn">View Project</a>
                     </div>
                 </div>
-                <div class="work">
-                    <img src="images/work-2.png" alt="">
-                    <div class="layer">
-                        <h3>Music App</h3>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque laboriosam esse voluptatibus temporibus voluptas sunt suscipit sapiente! Earum voluptatem ut nisi numquam quasi explicabo ullam, fugit quos voluptate tenetur quaerat!</p>
-                        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Project 2">
+                    </div>
+                    <div class="project-info">
+                        <h3>Travel Blog</h3>
+                        <p>A dynamic travel blog with content management system and interactive maps.</p>
+                        <div class="project-tags">
+                            <span>Vue.js</span>
+                            <span>Firebase</span>
+                            <span>Google Maps API</span>
+                        </div>
+                        <a href="#" class="btn">View Project</a>
                     </div>
                 </div>
-                <div class="work">
-                    <img src="images/work-3.png" alt="">
-                    <div class="layer">
-                        <h3>Online Shopping App</h3>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque laboriosam esse voluptatibus temporibus voluptas sunt suscipit sapiente! Earum voluptatem ut nisi numquam quasi explicabo ullam, fugit quos voluptate tenetur quaerat!</p>
-                        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80" alt="Project 3">
+                    </div>
+                    <div class="project-info">
+                        <h3>Fitness App</h3>
+                        <p>A workout tracking application with progress analytics and social features.</p>
+                        <div class="project-tags">
+                            <span>React Native</span>
+                            <span>GraphQL</span>
+                            <span>MySQL</span>
+                        </div>
+                        <a href="#" class="btn">View Project</a>
                     </div>
                 </div>
-            </div>
-            <a href="https://github.com/Niket-mishra?tab=repositories" class="btn">See more</a>
-        </div>
-    </div>
-<!-- ---------------------contact-------------------- -->
-
-
-<div id="contact">
-    <div class="container">
-        <div class="row">
-            <div class="contact-left">
-                <h1 class="sub-title">Contact <span>Me</span></h1>
-                <p><i class="fa-solid fa-paper-plane"></i><a href="mailto://niketmishraofficial@gmail.com"> niketmishraofficial@gmail.com</a></p>
-                <p><i class="fa-solid fa-phone"></i> <a href="tel://+919021605329"> +91 90216 05329</a></p>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/niketmishraofficial/"><i class='fab fa-facebook'></i></a>
-                    <a href="https://twitter.com/Niket_Mishra_"><i class='fab fa-twitter-square'></i></a>
-                    <a href="https://www.instagram.com/_n.i.k.e.t_/"><i class='fab fa-instagram'></i></a>
-                    <a href="https://github.com/Niket-mishra/"><i class='fab fa-github'></i></a>
-                </div>
-                <a href="images/my-cv.pdf" download class="btn btn2">Download CV</a>
-            </div>
-            <div class="contact-right">
-                <form name="submit-to-google-sheet">
-                    <input type="text" name="Name" placeholder="Your Name" required>
-                    <input type="email" name="Email" placeholder="Your Email" required>
-                    <textarea name="Message" rows="6" placeholder="Your Message" required></textarea>
-                    <button type="submit" class="btn btn2">Submit</button>
-                </form>
-                <span id="msg"></span>
             </div>
         </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <p>I'm currently available for freelance work. If you have a project that you want to get started or think you need my help with something, then get in touch.</p>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i>
+                        &nbsp;&nbsp;Mumbai, India
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope"></i>
+                        &nbsp;niketmishraofficial@gmail.com
+                    </p>
+                    <p>
+                        <i class="fas fa-phone"></i>
+                        +91 90216 05329
+                    </p>
+                    <p>
+                        <a href="#" class="btn btn-download" id="top-download-cv"><i class="fas fa-download"></i>
+                             Download CV
+                        </a>
+                    </p>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+            <p>&copy; 2025 Niket Mishra. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top" id="scroll-top">
+        <i class="fas fa-arrow-up"></i>
     </div>
-    <div class="copyright">
-        <p>Copyright &copy; Niket M. Made with <i class="fa-solid fa-heart"></i> using <i class="fa-brands fa-html5"></i> HTML & <i class="fa-brands fa-css3-alt"></i> CSS</p>
+
+    <!-- Snackbar Notification -->
+    <div class="snackbar" id="snackbar">
+        <i class="fas fa-check-circle"></i>
+        <span id="snackbar-message">Your message has been sent successfully!</span>
     </div>
-</div>
-
-
-
-
-
 
     <script>
-        var tablinks = document.getElementsByClassName("tab-links");
-        var tabcontents = document.getElementsByClassName("tab-contents");
-        function opentab(tabname){
-            for (tablink of tablinks) {
-                tablink.classList.remove("active-link");
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        const body = document.body;
+        
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            if (nav.classList.contains('active')) {
+                menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+                body.style.overflow = 'hidden';
+            } else {
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                body.style.overflow = 'auto';
             }
-            for (tabcontent of tabcontents) {
-                tabcontent.classList.remove("active-tab");
+        });
+        
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                body.style.overflow = 'auto';
+            });
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            
+            if(document.body.classList.contains('light-mode')) {
+                localStorage.setItem('theme', 'light');
+            } else {
+                localStorage.setItem('theme', 'dark');
             }
-            event.currentTarget.classList.add("active-link");
-            document.getElementById(tabname).classList.add("active-tab");
-        }
-    </script>
-    <script>
-        var sidemenu = document.getElementById("sidemenu");
+        });
 
-        function openmenu(){
-            sidemenu.style.right="0";
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
         }
-        function closemenu(){
-            sidemenu.style.right="-200";
-        }
-    </script>
-<script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwvc7wMW5GUupf53pKC5BZ6zfPcY2cPteUo_CmcayuIm-11e9IqYIOytrZHaLqyyLlj4g/exec'
-  const form = document.forms['submit-to-google-sheet']
-  const msg = document.getElementById("msg")
 
-  form.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => {
-        msg.innerHTML = "Message sent Successfully"
-        setTimeout(function () {
-            msg.innerHTML = ""
-        },5000)
-        form.reset()
-      })
-      .catch(error => console.error('Error!', error.message))
-  })
+        // Animate elements on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.skill-card, .project-card, .stat-box');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if(elementPosition < screenPosition) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial state for animated elements
+        document.querySelectorAll('.skill-card, .project-card, .stat-box').forEach(element => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(50px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+
+        // Scroll to top functionality
+        const scrollTopBtn = document.getElementById('scroll-top');
+        
+        window.addEventListener('scroll', () => {
+            animateOnScroll();
+            
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('active');
+            } else {
+                scrollTopBtn.classList.remove('active');
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+         // Snackbar notification function
+        function showSnackbar(message, isError = false) {
+            const snackbar = document.getElementById('snackbar');
+            const snackbarMessage = document.getElementById('snackbar-message');
+            
+            snackbarMessage.textContent = message;
+            
+            if (isError) {
+                snackbar.classList.add('error');
+            } else {
+                snackbar.classList.remove('error');
+            }
+            
+            snackbar.classList.add('show');
+            
+            setTimeout(() => {
+                snackbar.classList.remove('show');
+            }, 3000);
+        }
+
+        // Initial check in case elements are already in view
+        window.addEventListener('load', animateOnScroll);
+        
+        // Form submission handling
+        const contactForm = document.querySelector('.contact-form form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Simple form validation
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const messageInput = document.getElementById('message');
+                
+                if (nameInput.value.trim() === '' || emailInput.value.trim() === '' || messageInput.value.trim() === '') {
+                    showSnackbar('Please fill in all fields', true);
+                    return;
+                }
+                
+                // Here you would normally send the form data to a server
+                showSnackbar('Your message has been sent successfully!');
+                contactForm.reset();
+            });
+        }
+
+        const downloadCvButtons = document.querySelectorAll('#nav-download-cv, #top-download-cv');
+
+         downloadCvButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                showSnackbar('CV download started!');
+                
+                // Simulate download delay
+                setTimeout(() => {
+                    // In a real scenario, this would trigger a file download
+                    window.open('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', '_blank');
+                }, 1000);
+            });
+        });
+
     </script>
 </body>
 </html>
