@@ -475,21 +475,26 @@
         .countdown h2 {
             margin-bottom: 15px;
             font-size: 1.5rem;
+            text-align: center;
         }
 
         .timer {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .timer-unit {
             background: var(--card-bg);
-            padding: 15px;
+            padding: 12px;
             border-radius: 5px;
-            min-width: 80px;
+            min-width: 60px;
             border: 1px solid var(--glass-border);
             transition: transform 0.3s ease;
+            flex: 1;
+            max-width: 80px;
+            text-align: center;
         }
 
         .timer-unit:hover {
@@ -497,18 +502,20 @@
         }
 
         .timer-number {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            line-height: 1.2;
         }
 
         .timer-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             color: var(--gray);
+            margin-top: 5px;
         }
 
         /* Products Section */
@@ -1085,12 +1092,24 @@
             }
             
             .timer {
-                flex-wrap: wrap;
+                gap: 8px
             }
             
             .timer-unit {
-                min-width: 70px;
-                margin-bottom: 10px;
+                min-width: 55px;
+                padding: 10px 5px;
+                max-width: 65px;
+            }
+            .timer-number {
+                font-size: 1.5rem;
+            }
+            
+            .timer-label {
+                font-size: 0.7rem;
+            }
+            
+            .countdown h2 {
+                font-size: 1.3rem;
             }
             
             .currency-selector {
@@ -1148,13 +1167,30 @@
                 font-size: 1rem;
             }
             
+            timer {
+                gap: 6px;
+            }
+            
             .timer-unit {
-                min-width: 60px;
-                padding: 10px;
+                min-width: 50px;
+                padding: 8px 4px;
+                max-width: 55px;
             }
             
             .timer-number {
-                font-size: 1.8rem;
+                font-size: 1.3rem;
+            }
+            
+            .timer-label {
+                font-size: 0.65rem;
+            }
+            .countdown {
+                padding: 15px;
+            }
+            
+            .countdown h2 {
+                font-size: 1.2rem;
+                margin-bottom: 12px;
             }
             
             .products-grid {
@@ -1185,6 +1221,7 @@
         }
 
         @media (max-width: 400px) {
+            
             .logo {
                 font-size: 1.1rem;
             }
@@ -1193,6 +1230,40 @@
                 font-size: 0.7rem;
                 right: -35px;
                 bottom: -2px;
+            }
+
+            .timer {
+                gap: 5px;
+            }
+            
+            .timer-unit {
+                min-width: 45px;
+                padding: 6px 3px;
+                max-width: 50px;
+            }
+            
+            .timer-number {
+                font-size: 1.1rem;
+            }
+            .timer-label {
+                font-size: 0.6rem;
+            }
+            
+            .countdown h2 {
+                font-size: 1.1rem;
+            }
+        }
+        @media (max-width: 350px) {
+            .timer-unit {
+                min-width: 40px;
+                max-width: 45px;
+            }
+            
+            .timer-number {
+                font-size: 1rem;
+            }
+            .timer-label {
+                font-size: 0.55rem;
             }
         }
     </style>
