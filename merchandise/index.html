@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Niket Mishra | Developer Merchandise Store</title>
+    <title>Niket Mishra | Official Merchandise Store</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <style>
+     <style>
         /* Base Styles & Variables - Matching Portfolio */
         :root {
             --primary: #6366f1;
@@ -443,24 +443,24 @@
         }
 
         .typing-text {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 3px solid var(--secondary);
-    animation: blink 0.7s infinite;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-weight: bold;
-}
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid var(--secondary);
+            animation: blink 0.7s infinite;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+        }
 
         @keyframes blink {
             0%, 100% { border-color: var(--secondary); }
             50% { border-color: transparent; }
         }
 
-        /* Countdown Timer */
+        /* Countdown Timer - Fixed for small screens */
         .countdown {
             background: var(--glass);
             border-radius: 10px;
@@ -473,7 +473,7 @@
         }
 
         .countdown h2 {
-            margin-bottom: 15px;
+            margin-bottom: 20px; /* Increased gap between title and timer */
             font-size: 1.5rem;
             text-align: center;
         }
@@ -486,7 +486,7 @@
         }
 
         .timer-unit {
-            background: var(--card-bg);
+            background: var(--social-bg);
             padding: 12px;
             border-radius: 5px;
             min-width: 60px;
@@ -835,6 +835,7 @@
         .modal.show {
             opacity: 1;
             visibility: visible;
+            animation: fadeIn 0.3s ease;
         }
 
         .modal-content {
@@ -980,6 +981,8 @@
             background: #128C7E;
         }
 
+        
+
         /* Animations */
         @keyframes float {
             0% { transform: translateY(0px) rotate(0deg); }
@@ -1092,24 +1095,12 @@
             }
             
             .timer {
-                gap: 8px
+                flex-wrap: wrap;
             }
             
             .timer-unit {
-                min-width: 55px;
-                padding: 10px 5px;
-                max-width: 65px;
-            }
-            .timer-number {
-                font-size: 1.5rem;
-            }
-            
-            .timer-label {
-                font-size: 0.7rem;
-            }
-            
-            .countdown h2 {
-                font-size: 1.3rem;
+                min-width: 70px;
+                margin-bottom: 10px;
             }
             
             .currency-selector {
@@ -1167,30 +1158,22 @@
                 font-size: 1rem;
             }
             
-            timer {
-                gap: 6px;
-            }
-            
             .timer-unit {
-                min-width: 50px;
-                padding: 8px 4px;
-                max-width: 55px;
+                min-width: 60px;
+                padding: 10px;
+                max-width: 65px;
             }
             
             .timer-number {
-                font-size: 1.3rem;
+                font-size: 1.5rem;
             }
             
             .timer-label {
-                font-size: 0.65rem;
-            }
-            .countdown {
-                padding: 15px;
+                font-size: 0.7rem;
             }
             
             .countdown h2 {
-                font-size: 1.2rem;
-                margin-bottom: 12px;
+                font-size: 1.3rem;
             }
             
             .products-grid {
@@ -1221,6 +1204,32 @@
         }
 
         @media (max-width: 400px) {
+            .timer {
+                gap: 5px;
+            }
+            
+            .timer-unit {
+                min-width: 45px;
+                padding: 8px 4px;
+                max-width: 50px;
+            }
+            
+            .timer-number {
+                font-size: 1.3rem;
+            }
+            
+            .timer-label {
+                font-size: 0.65rem;
+            }
+            
+            .countdown {
+                padding: 15px;
+            }
+            
+            .countdown h2 {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+            }
             
             .logo {
                 font-size: 1.1rem;
@@ -1231,39 +1240,25 @@
                 right: -35px;
                 bottom: -2px;
             }
+        }
 
-            .timer {
-                gap: 5px;
-            }
-            
+        @media (max-width: 350px) {
             .timer-unit {
-                min-width: 45px;
+                min-width: 40px;
+                max-width: 45px;
                 padding: 6px 3px;
-                max-width: 50px;
             }
             
             .timer-number {
                 font-size: 1.1rem;
             }
+            
             .timer-label {
                 font-size: 0.6rem;
             }
             
             .countdown h2 {
                 font-size: 1.1rem;
-            }
-        }
-        @media (max-width: 350px) {
-            .timer-unit {
-                min-width: 40px;
-                max-width: 45px;
-            }
-            
-            .timer-number {
-                font-size: 1rem;
-            }
-            .timer-label {
-                font-size: 0.55rem;
             }
         }
     </style>
@@ -1307,7 +1302,7 @@
             <nav>
                 <ul>
                     <li><a href="https://niket-mishra.github.io/">Portfolio</a></li>
-                    <li><a href="#products">Merch</a></li>
+                    <li><a href="#products">Products</a></li>
                     <li><a href="#behind-the-scenes">Process</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -1353,7 +1348,7 @@
     <!-- Products Section -->
     <section id="products" class="products">
         <div class="container">
-            <h2>Developer Collection</h2>
+            <h2>Our Products</h2>
             <div class="products-grid">
                 <div class="product-card">
                     <div class="product-image">
