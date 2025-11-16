@@ -863,6 +863,41 @@
             opacity: 1;
         }
 
+        .floating-icons {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-icons .particle {
+            position: absolute;
+            border-radius: 12px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            animation: particleFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-25px) rotate(10deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
         /* Animations */
         @keyframes float {
             0% {
@@ -1166,6 +1201,7 @@
 
             <div class="hero-image reveal delay-1">
                 <img src="/avatar.bmp" alt="Portrait of Niket Mishra" loading="lazy" decoding="async">
+                  <div class="floating-icons" aria-hidden="true"></div>
             </div>
 
         </div>
@@ -1764,7 +1800,7 @@
                 }
             });
         }
-    
+
         /* -----------------------------------
            Scroll To Top Button
         ----------------------------------- */
@@ -1848,6 +1884,25 @@
         ----------------------------------- */
         window.addEventListener('load', animateOnScroll);
     </script>
+    <!-- GSAP & plugins (non-module <script> so gsap is global) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js" integrity="" crossorigin="anonymous"></script>
+<script type="module">
+  // Import local modules (assumes these files are in same folder as index.html)
+  import { initGSAP } from './gsapAnimations.js';
+  import { initCursor } from './cursor.js';
+  import { initTheme } from './theme.js';
+  import { initFloatingParticles } from './particles.js';
+
+  // initialize in order (GSAP first to register plugins)
+  initGSAP();              // parallax hero, enhanced reveals
+  initFloatingParticles(); // particles depends only on DOM
+  initCursor();            // cursor follow + magnetic
+  initTheme();             // theme toggle (sun/moon)
+</script>
+
+
 
 </body>
 
