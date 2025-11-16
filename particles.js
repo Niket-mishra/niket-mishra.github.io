@@ -1,40 +1,60 @@
-/* ============================
-   FLOATING PARTICLES MODULE
-   ============================ */
+// particles.js
+export function initFloatingParticles({
+  total = 8,
+  icons = [
+    `<i class="fab fa-html5" aria-hidden="true"></i>`,
+    `<i class="fab fa-css3-alt" aria-hidden="true"></i>`,
+    `<i class="fab fa-js" aria-hidden="true"></i>`,
+    `<i class="fab fa-react" aria-hidden="true"></i>`,
+    `<i class="fas fa-code" aria-hidden="true"></i>`,
+    `<i class="fas fa-rocket" aria-hidden="true"></i>`
+  ]
+} = {}) {
+  const container = document.querySelector('.floating-icons');
+  if (!container) return;
 
-export function initFloatingParticles() {
-    const container = document.querySelector(".floating-icons");
-    if (!container) return;
+  // clear previous
+  container.innerHTML = '';
 
-    const icons = [
-        `<i class="fab fa-html5"></i>`,
-        `<i class="fab fa-css3-alt"></i>`,
-        `<i class="fab fa-js"></i>`,
-        `<i class="fab fa-react"></i>`,
-        `<i class="fas fa-code"></i>`,
-        `<i class="fas fa-rocket"></i>`
-    ];
+  for (let i = 0; i < total; i++) {
+    const div = document.createElement('div');
+    div.className = 'particle';
+    div.innerHTML = icons[i % icons.length];
 
-    const TOTAL_PARTICLES = 6;
+    // random position/size/animation timing
+    const top = 8 + Math.random() * 80;
+    const left = 4 + Math.random() * 92;
+    const size = 20 + Math.round(Math.random() * 36);
+    const delay = Math.random() * 4;
 
-    // Create particles dynamically
-    for (let i = 0; i < TOTAL_PARTICLES; i++) {
-        const particle = document.createElement("div");
-        particle.classList.add("particle");
-        particle.innerHTML = icons[i % icons.length];
+    div.style.top = `${top}%`;
+    div.style.left = `${left}%`;
+    div.style.width = `${size}px`;
+    div.style.height = `${size}px`;
+    div.style.animationDelay = `${delay}s`;
+    div.style.opacity = 0.95;
 
-        // Random positions
-        particle.style.top = Math.random() * 80 + "%";
-        particle.style.left = Math.random() * 80 + "%";
+    // small floating amplitude set via CSS keyframes (already provided)
+    container.appendChild(div);
 
-        // Random size
-        const size = Math.random() * 25 + 25;
-        particle.style.width = size + "px";
-        particle.style.height = size + "px";
-
-        // Random animation delay
-        particle.style.animationDelay = (Math.random() * 3) + "s";
-
-        container.appendChild(particle);
+    // optional GSAP small orbit for variety
+    if (window.gsap) {
+      const amplitude = 6 + Math.random() * 16;
+      gsap.to(div, {
+        y: `-=${amplitude}`,
+        duration: 4 + Math.random() * 6,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+        delay: delay
+      });
+      gsap.to(div, {
+        rotation: Math.random() * 30 - 15,
+        duration: 8 + Math.random() * 6,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut'
+      });
     }
+  }
 }
