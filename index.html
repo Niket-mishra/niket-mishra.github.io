@@ -890,60 +890,70 @@
             color: var(--primary);
             animation: particleFloat 6s ease-in-out infinite;
         }
+
         /* custom cursor */
-.has-custom-cursor { cursor: none; }
+        .has-custom-cursor {
+            cursor: none;
+        }
 
-.custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(99,102,241,0.95) 40%, rgba(99,102,241,0.18) 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate3d(-50%, -50%, 0);
-  z-index: 99999;
-  transition: transform 160ms ease, opacity 160ms ease;
-  mix-blend-mode: screen;
-  box-shadow: 0 6px 22px rgba(99,102,241,0.16), 0 2px 6px rgba(0,0,0,0.25);
-}
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(99, 102, 241, 0.95) 40%, rgba(99, 102, 241, 0.18) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate3d(-50%, -50%, 0);
+            z-index: 99999;
+            transition: transform 160ms ease, opacity 160ms ease;
+            mix-blend-mode: screen;
+            box-shadow: 0 6px 22px rgba(99, 102, 241, 0.16), 0 2px 6px rgba(0, 0, 0, 0.25);
+        }
 
-.custom-cursor.cursor--small {
-  transform: translate3d(-50%, -50%, 0) scale(0.7);
-  width: 14px; height: 14px;
-  opacity: 0.95;
-}
+        .custom-cursor.cursor--small {
+            transform: translate3d(-50%, -50%, 0) scale(0.7);
+            width: 14px;
+            height: 14px;
+            opacity: 0.95;
+        }
 
-/* spotlight */
-.mouse-spotlight {
-  position: fixed;
-  left: 0; top: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 9998;
-  transition: opacity 220ms linear;
-  opacity: 1;
-  background: radial-gradient(circle at var(--sx,50%) var(--sy,50%),
-    rgba(255,255,240,0.95) 0%,
-    rgba(255,255,240,0.12) 10%,
-    rgba(255,255,255,0.02) 30%,
-    transparent 55%);
-  mix-blend-mode: overlay;
-  /* optionally change size via JS by altering background-size or CSS var */
-}
+        /* spotlight */
+        .mouse-spotlight {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9998;
+            transition: opacity 220ms linear;
+            opacity: 1;
+            background: radial-gradient(circle at var(--sx, 50%) var(--sy, 50%),
+                    rgba(255, 255, 240, 0.95) 0%,
+                    rgba(255, 255, 240, 0.12) 10%,
+                    rgba(255, 255, 255, 0.02) 30%,
+                    transparent 55%);
+            mix-blend-mode: overlay;
+            /* optionally change size via JS by altering background-size or CSS var */
+        }
 
-/* canvas trail */
-.cursor-trail-canvas {
-  z-index: 9997;
-}
+        /* canvas trail */
+        .cursor-trail-canvas {
+            z-index: 9997;
+        }
 
-/* make floating icons non-interactive just in case */
-.floating-icons { pointer-events: none; }
+        /* make floating icons non-interactive just in case */
+        .floating-icons {
+            pointer-events: none;
+        }
 
-/* magnet elements hint: ensure transform origin center */
-[data-magnet] { transform-origin: center center; will-change: transform; }
+        /* magnet elements hint: ensure transform origin center */
+        [data-magnet] {
+            transform-origin: center center;
+            will-change: transform;
+        }
 
 
         @keyframes particleFloat {
@@ -1223,9 +1233,11 @@
             <a href="#home" class="logo" aria-label="Go to home" style="text-decoration: none;">Niket
                 M<span>.</span></a>
             <div class="nav-btns">
-                <div class="theme-toggle" id="theme-toggle">
+                <div class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span class="theme-icon"></span>
                     <div class="toggle-thumb"></div>
                 </div>
+
                 <button class="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -1726,11 +1738,11 @@
 
         /* -----------------------------------
            Theme Toggle
-        ----------------------------------- */
-        const themeToggle = document.getElementById('theme-toggle');
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-        });
+        // ----------------------------------- */
+        // const themeToggle = document.getElementById('theme-toggle');
+        // themeToggle.addEventListener('click', () => {
+        //     document.body.classList.toggle('light-mode');
+        // });
 
 
         /* -----------------------------------
@@ -1963,7 +1975,7 @@
 
         // initialize in order (GSAP first to register plugins)
         initGSAP();              // parallax hero, enhanced reveals
-        initFloatingParticles({total: 10}); // particles depends only on DOM
+        initFloatingParticles({ total: 10 }); // particles depends only on DOM
         initCursor({ trailDensity: 2, magnetSelector: '[data-magnet]' });            // cursor follow + magnetic
         initTheme();             // theme toggle (sun/moon)
     </script>
