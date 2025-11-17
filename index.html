@@ -49,10 +49,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap"
         rel="stylesheet" />
-    <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         /* Base Styles & Variables */
@@ -372,6 +371,12 @@
             opacity: 0.1;
             filter: blur(40px);
             animation: float 10s ease-in-out infinite reverse;
+        }
+
+        .hero::before,
+        .hero::after {
+            --blob-shift: 0px;
+            transform: translateY(var(--blob-shift));
         }
 
         .hero-content {
@@ -885,6 +890,61 @@
             color: var(--primary);
             animation: particleFloat 6s ease-in-out infinite;
         }
+        /* custom cursor */
+.has-custom-cursor { cursor: none; }
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(99,102,241,0.95) 40%, rgba(99,102,241,0.18) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate3d(-50%, -50%, 0);
+  z-index: 99999;
+  transition: transform 160ms ease, opacity 160ms ease;
+  mix-blend-mode: screen;
+  box-shadow: 0 6px 22px rgba(99,102,241,0.16), 0 2px 6px rgba(0,0,0,0.25);
+}
+
+.custom-cursor.cursor--small {
+  transform: translate3d(-50%, -50%, 0) scale(0.7);
+  width: 14px; height: 14px;
+  opacity: 0.95;
+}
+
+/* spotlight */
+.mouse-spotlight {
+  position: fixed;
+  left: 0; top: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9998;
+  transition: opacity 220ms linear;
+  opacity: 1;
+  background: radial-gradient(circle at var(--sx,50%) var(--sy,50%),
+    rgba(255,255,240,0.95) 0%,
+    rgba(255,255,240,0.12) 10%,
+    rgba(255,255,255,0.02) 30%,
+    transparent 55%);
+  mix-blend-mode: overlay;
+  /* optionally change size via JS by altering background-size or CSS var */
+}
+
+/* canvas trail */
+.cursor-trail-canvas {
+  z-index: 9997;
+}
+
+/* make floating icons non-interactive just in case */
+.floating-icons { pointer-events: none; }
+
+/* magnet elements hint: ensure transform origin center */
+[data-magnet] { transform-origin: center center; will-change: transform; }
+
 
         @keyframes particleFloat {
             0% {
@@ -1204,7 +1264,7 @@
 
             <div class="hero-image reveal delay-1">
                 <img src="/avatar.bmp" alt="Portrait of Niket Mishra" loading="lazy" decoding="async">
-                  
+
             </div>
 
         </div>
@@ -1888,22 +1948,25 @@
         window.addEventListener('load', animateOnScroll);
     </script>
     <!-- GSAP & plugins (non-module <script> so gsap is global) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js" integrity="" crossorigin="anonymous"></script>
-<script type="module">
-  // Import local modules (assumes these files are in same folder as index.html)
-  import { initGSAP } from './gsapAnimations.js';
-  import { initCursor } from './cursor.js';
-  import { initTheme } from './theme.js';
-  import { initFloatingParticles } from './particles.js';
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity=""
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity=""
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js" integrity=""
+        crossorigin="anonymous"></script>
+    <script type="module">
+        // Import local modules (assumes these files are in same folder as index.html)
+        import { initGSAP } from './gsapAnimations.js';
+        import { initCursor } from './cursor.js';
+        import { initTheme } from './theme.js';
+        import { initFloatingParticles } from './particles.js';
 
-  // initialize in order (GSAP first to register plugins)
-  initGSAP();              // parallax hero, enhanced reveals
-  initFloatingParticles(); // particles depends only on DOM
-  initCursor();            // cursor follow + magnetic
-  initTheme();             // theme toggle (sun/moon)
-</script>
+        // initialize in order (GSAP first to register plugins)
+        initGSAP();              // parallax hero, enhanced reveals
+        initFloatingParticles({total: 10}); // particles depends only on DOM
+        initCursor({ trailDensity: 2, magnetSelector: '[data-magnet]' });            // cursor follow + magnetic
+        initTheme();             // theme toggle (sun/moon)
+    </script>
 
 
 

@@ -13,7 +13,8 @@ export function initFloatingParticles({
   const container = document.querySelector('.floating-icons');
   if (!container) return;
 
-  // clear previous
+  // ensure container does not block pointer events
+  container.style.pointerEvents = 'none';
   container.innerHTML = '';
 
   for (let i = 0; i < total; i++) {
@@ -33,11 +34,13 @@ export function initFloatingParticles({
     div.style.height = `${size}px`;
     div.style.animationDelay = `${delay}s`;
     div.style.opacity = 0.95;
+    div.style.display = 'flex';
+    div.style.alignItems = 'center';
+    div.style.justifyContent = 'center';
 
-    // small floating amplitude set via CSS keyframes (already provided)
     container.appendChild(div);
 
-    // optional GSAP small orbit for variety
+    // optional GSAP orbit
     if (window.gsap) {
       const amplitude = 6 + Math.random() * 16;
       gsap.to(div, {
@@ -46,7 +49,7 @@ export function initFloatingParticles({
         yoyo: true,
         repeat: -1,
         ease: 'sine.inOut',
-        delay: delay
+        delay
       });
       gsap.to(div, {
         rotation: Math.random() * 30 - 15,
