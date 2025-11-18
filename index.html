@@ -3136,7 +3136,7 @@
             // 1. Honeypot protection
             if (document.querySelector("input[name='_honey']").value !== "") {
                 e.preventDefault();
-                showSnackbar("Spam detected (honeypot)", true);
+                showSnackbar("Spam detected", true);
                 return;
             }
 
