@@ -35,29 +35,24 @@
     <link rel="canonical" href="https://niket-mishra.github.io/" />
 
     <!-- Favicon & Icons (fixed paths for GitHub Pages) -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-    <link rel="manifest" href="site.webmanifest" />
-    <link rel="icon" href="favicon.ico" />
+    <link rel="icon" href="favicon-light.png" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="favicon-dark.png" media="(prefers-color-scheme: dark)">
+
 
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Fonts -->
-    <link
+    <link rel="preload"
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap"
-        rel="stylesheet" />
+        as="style" onload="this.rel='stylesheet'">
+
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js"></script>
 
     <!-- Your Styles (unchanged) -->
     <style>
@@ -1108,46 +1103,19 @@
             opacity: 0.95;
         }
 
-        /* spotlight */
-        .mouse-spotlight {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 9998;
-            transition: opacity 220ms linear;
-            opacity: 1;
-            background: radial-gradient(circle at var(--sx, 50%) var(--sy, 50%),
-                    rgba(255, 255, 240, 0.95) 0%,
-                    rgba(255, 255, 240, 0.12) 10%,
-                    rgba(255, 255, 255, 0.02) 30%,
-                    transparent 55%);
-            mix-blend-mode: overlay;
-            /* optionally change size via JS by altering background-size or CSS var */
-        }
-
-        /* canvas trail */
-        .cursor-trail-canvas {
-            z-index: 9997;
-        }
+        
 
         /* make floating icons non-interactive just in case */
         .floating-icons {
             pointer-events: none;
         }
 
-        /* magnet elements hint: ensure transform origin center */
-        [data-magnet] {
-            transform-origin: center center;
-            will-change: transform;
-        }
+        
 
         .theme-icon-toggle {
             width: 42px;
             height: 42px;
-            border-radius: 12px;
+            border-radius: 50%;
             background: var(--glass);
             border: 1px solid var(--glass-border);
             display: flex;
@@ -2141,9 +2109,13 @@
 
         @media (max-width: 450px) {
 
+            * {
+                animation-duration: .5s !important;
+            }
+
             /* =============================
-       ABOUT SECTION IMPROVEMENTS
-    ==============================*/
+                ABOUT SECTION IMPROVEMENTS
+            ==============================*/
 
             /* Reduce image size without changing shape */
             .about-image img {
@@ -2382,23 +2354,23 @@
                 </div>
 
 
-                <div class="menu-toggle" id="menu-toggle">
-                    <i class="fas fa-bars icon-open"></i>
-                    <i class="fas fa-times icon-close"></i>
-                </div>
-
-
+                <div class="menu-toggle" id="menu-toggle" aria-controls="nav-menu" aria-expanded="false"></div>
+                <i class="fas fa-bars icon-open"></i>
+                <i class="fas fa-times icon-close"></i>
             </div>
-            <nav id="nav-menu" aria-label="Main Navigation">
-                <ul>
-                    <li><a href="#home" tabindex="0">Home</a></li>
-                    <li><a href="#about" tabindex="0">About</a></li>
-                    <li><a href="#skills" tabindex="0">Skills</a></li>
-                    <li><a href="#projects" tabindex="0">Projects</a></li>
-                    <li><a href="#testimonials" tabindex="0">Testimonials</a></li>
-                    <li><a href="#contact" tabindex="0">Contact</a></li>
-                </ul>
-            </nav>
+
+
+        </div>
+        <nav id="nav-menu" aria-label="Main Navigation">
+            <ul>
+                <li><a href="#home" tabindex="0">Home</a></li>
+                <li><a href="#about" tabindex="0">About</a></li>
+                <li><a href="#skills" tabindex="0">Skills</a></li>
+                <li><a href="#projects" tabindex="0">Projects</a></li>
+                <li><a href="#testimonials" tabindex="0">Testimonials</a></li>
+                <li><a href="#contact" tabindex="0">Contact</a></li>
+            </ul>
+        </nav>
         </div>
     </header>
 
@@ -2460,7 +2432,7 @@
                 </div>
                 <div class="about-image reveal delay-1">
                     <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop"
-                        alt="Team collaboration" loading="lazy" decoding="async" width="600" height="400">
+                        alt="Team collaborating on creative project in office" loading="lazy" decoding="async" width="600" height="400">
                 </div>
             </div>
         </div>
@@ -2896,6 +2868,7 @@
             nav.classList.toggle('active');
 
             body.style.overflow = nav.classList.contains('active') ? 'hidden' : 'auto';
+            menuToggle.setAttribute("aria-expanded", nav.classList.contains('active'));
         });
 
         document.querySelectorAll('nav ul li a').forEach(link => {
@@ -2903,19 +2876,9 @@
                 nav.classList.remove('active');
                 menuToggle.classList.remove('active');
                 body.style.overflow = 'auto';
+                menuToggle.setAttribute("aria-expanded", "false");
             });
         });
-
-
-
-        /* -----------------------------------
-           Theme Toggle
-        // ----------------------------------- */
-        // const themeToggle = document.getElementById('theme-toggle');
-        // themeToggle.addEventListener('click', () => {
-        //     document.body.classList.toggle('light-mode');
-        // });
-
 
         /* -----------------------------------
            Counter Animation
@@ -3088,10 +3051,9 @@
 
 
         /* -----------------------------------
-   ADVANCED SPAM PROTECTION
------------------------------------ */
+            ADVANCED SPAM PROTECTION
+        ----------------------------------- */
 
-        // Track form start time
         let formStartTime = Date.now();
         document.getElementById("formTime").value = formStartTime;
 
@@ -3105,7 +3067,7 @@
             });
         });
 
-        // Hash message to detect duplicates
+        // Simple Hash Generator for duplicate message checking
         function simpleHash(str) {
             let hash = 0;
             for (let i = 0; i < str.length; i++) {
@@ -3115,78 +3077,105 @@
             return hash.toString();
         }
 
-        /* SPAM KEYWORDS */
+        // Spam Words List
         const spamKeywords = [
             "viagra", "porn", "sex", "casino", "loan", "bitcoin", "crypto",
             "buy now", "cheap", "offer", "winner", "prize", "money",
             "telegram", "whatsapp", "adult", "escort", "betting"
         ];
 
-        /* MAIN VALIDATION */
+        // Main Validation
         contactForm.addEventListener("submit", function (e) {
+
             const now = Date.now();
             const elapsedSeconds = (now - formStartTime) / 1000;
 
             const message = document.getElementById("message").value.trim().toLowerCase();
             const name = document.getElementById("name").value.trim().toLowerCase();
 
-            // Fill message hash
-            document.getElementById("msgHash").value = simpleHash(message);
+            // Hash message
+            const msgHash = simpleHash(message);
+            document.getElementById("msgHash").value = msgHash;
 
-            // 1. Honeypot protection
+            /* -----------------------------------
+               0️⃣ — 15s Cooldown Protection
+            ----------------------------------- */
+            let lastSent = localStorage.getItem("lastSentTime") || 0;
+
+            if (Date.now() - lastSent < 15000) {
+                e.preventDefault();
+                showSnackbar("Please wait 15 seconds before sending again.", true);
+                return;
+            }
+
+            /* -----------------------------------
+               1️⃣ — Honeypot Check
+            ----------------------------------- */
             if (document.querySelector("input[name='_honey']").value !== "") {
                 e.preventDefault();
                 showSnackbar("Spam detected", true);
                 return;
             }
 
-            // 2. Time-based protection
+            /* -----------------------------------
+               2️⃣ — Time Check (Bot too fast)
+            ----------------------------------- */
             if (elapsedSeconds < 3) {
                 e.preventDefault();
                 showSnackbar("You are too fast! Try again.", true);
                 return;
             }
 
-            // 3. Behavior check
+            /* -----------------------------------
+               3️⃣ — User Activity Check (Bots are inactive)
+            ----------------------------------- */
             if (!userActive) {
                 e.preventDefault();
                 showSnackbar("Bot behavior detected.", true);
                 return;
             }
 
-            // 4. Spam keyword detection
+            /* -----------------------------------
+               4️⃣ — Spam Keyword Scanner
+            ----------------------------------- */
             if (spamKeywords.some(word => message.includes(word))) {
                 e.preventDefault();
                 showSnackbar("Spam content blocked!", true);
                 return;
             }
 
-            // 5. Entropy check (bots write repetitive text)
+            /* -----------------------------------
+               5️⃣ — Entropy Check (Repeating Patterns)
+            ----------------------------------- */
             let uniqueChars = new Set(message).size;
             let entropyScore = uniqueChars / message.length;
 
-            if (entropyScore < 0.15) { // repeated letters like: "aaaaa", "hellohellohello"
+            if (entropyScore < 0.15) {
                 e.preventDefault();
                 showSnackbar("Suspicious message pattern", true);
                 return;
             }
 
-            // 6. Duplicate message blocker (localStorage)
-            if (localStorage.getItem("lastMsgHash") === simpleHash(message)) {
+            /* -----------------------------------
+               6️⃣ — Duplicate Message Blocker
+            ----------------------------------- */
+            if (localStorage.getItem("lastMsgHash") === msgHash) {
                 e.preventDefault();
                 showSnackbar("Duplicate message blocked.", true);
                 return;
             }
 
-            // Save last message
-            localStorage.setItem("lastMsgHash", simpleHash(message));
+            // Save last message hash & cooldown timestamp
+            localStorage.setItem("lastMsgHash", msgHash);
+            localStorage.setItem("lastSentTime", Date.now());
 
-            // 7. Everything valid → allow submit
+            /* -----------------------------------
+               7️⃣ — All Good → Allow Submit
+            ----------------------------------- */
             showSnackbar("Message sent successfully!");
         });
 
 
-        
         /* -----------------------------------
            CV Download
         ----------------------------------- */
@@ -3227,6 +3216,22 @@
         initCursor({ trailDensity: 2, magnetSelector: '[data-magnet]' });            // cursor follow + magnetic
         initTheme();             // theme toggle (sun/moon)
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Person",
+  "name": "Niket Mishra",
+  "url": "https://niket-mishra.github.io/",
+  "jobTitle": "Full Stack Developer",
+  "sameAs": [
+    "https://github.com/niket-mishra",
+    "https://www.linkedin.com/in/niket-mishra/",
+    "https://twitter.com/Niket_Mishra_"
+  ]
+}
+</script>
 
 
 
