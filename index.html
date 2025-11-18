@@ -333,6 +333,18 @@
             transform: translateX(24px);
         }
 
+        /* Light Mode Snackbar */
+        .light-mode .snackbar {
+            background-color: #ffffff !important;
+            color: #1e293b !important;
+            border-left-color: var(--success);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .light-mode .snackbar.error {
+            border-left-color: var(--error);
+        }
+
         .menu-toggle {
             display: none;
             align-items: center;
@@ -343,7 +355,7 @@
             width: 45px;
             height: 45px;
             border-radius: 12px;
-            
+
             position: relative;
         }
 
@@ -2712,7 +2724,12 @@
 
                 <!-- RIGHT CONTACT FORM -->
                 <div class="contact-form reveal delay-1">
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formsubmit.co/niketmishraofficial@gmail.com" method="POST">
+
+                        <!-- FormSubmit settings -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="box">
+                        <input type="hidden" name="_next" value="https://niket-mishra.github.io/?form=success">
 
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -2731,10 +2748,25 @@
                             <textarea id="message" name="message" required
                                 placeholder="Tell me about your project..."></textarea>
                         </div>
+                        <!-- Honeypot -->
+                        <input type="text" name="_honey" style="display:none;">
 
-                        <button type="submit" class="btn">Send Message</button>
+                        <!-- Secret anti-bot token -->
+                        <input type="hidden" id="secretKey" name="_secret" value="Niket_Ultra_Protected_928392">
+
+                        <!-- Timer -->
+                        <input type="hidden" id="formTime" name="formTime">
+
+                        <!-- Behavior flag -->
+                        <input type="hidden" id="userActive" name="userActive" value="0">
+
+                        <!-- Duplicate prevention -->
+                        <input type="hidden" id="msgHash" name="msgHash">
+
+                        <button type="submit" class="btn" id="sendBtn">Send Message</button>
                     </form>
                 </div>
+
 
             </div>
         </div>
@@ -2747,19 +2779,22 @@
         <div class="container ">
 
             <div class="footer-social">
-                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <a href="https://twitter.com/Niket_Mishra_" target="_blank" rel="noopener noreferrer"
+                    aria-label="Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
 
-                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <a href="https://www.instagram.com/niket.to/" target="_blank" rel="noopener noreferrer"
+                    aria-label="Instagram">
                     <i class="fab fa-instagram" aria-hidden="true"></i>
                 </a>
 
-                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/niket-mishra/" target="_blank" rel="noopener noreferrer"
+                    aria-label="LinkedIn">
                     <i class="fab fa-linkedin" aria-hidden="true"></i>
                 </a>
 
-                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <a href="https://github.com/niket-mishra" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                     <i class="fab fa-github" aria-hidden="true"></i>
                 </a>
             </div>
@@ -3053,28 +3088,117 @@
 
 
         /* -----------------------------------
-           Contact Form
-        ----------------------------------- */
-        const contactForm = document.getElementById('contactForm');
+   ADVANCED SPAM PROTECTION
+----------------------------------- */
 
-        if (contactForm) {
-            contactForm.addEventListener('submit', e => {
-                e.preventDefault();
+        // Track form start time
+        let formStartTime = Date.now();
+        document.getElementById("formTime").value = formStartTime;
 
-                const nameInput = document.getElementById('name');
-                const emailInput = document.getElementById('email');
-                const messageInput = document.getElementById('message');
+        // Detect human activity
+        let userActive = false;
 
-                if (!nameInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
-                    showSnackbar('Please fill in all fields', true);
-                    return;
-                }
-
-                showSnackbar('Your message has been sent successfully!');
-                contactForm.reset();
+        ["mousemove", "keydown", "touchstart", "scroll"].forEach(evt => {
+            window.addEventListener(evt, () => {
+                userActive = true;
+                document.getElementById("userActive").value = "1";
             });
+        });
+
+        // Hash message to detect duplicates
+        function simpleHash(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                hash = (hash << 5) - hash + str.charCodeAt(i);
+                hash = hash & hash;
+            }
+            return hash.toString();
         }
 
+        /* SPAM KEYWORDS */
+        const spamKeywords = [
+            "viagra", "porn", "sex", "casino", "loan", "bitcoin", "crypto",
+            "buy now", "cheap", "offer", "winner", "prize", "money",
+            "telegram", "whatsapp", "adult", "escort", "betting"
+        ];
+
+        /* MAIN VALIDATION */
+        contactForm.addEventListener("submit", function (e) {
+            const now = Date.now();
+            const elapsedSeconds = (now - formStartTime) / 1000;
+
+            const message = document.getElementById("message").value.trim().toLowerCase();
+            const name = document.getElementById("name").value.trim().toLowerCase();
+
+            // Fill message hash
+            document.getElementById("msgHash").value = simpleHash(message);
+
+            // 1. Honeypot protection
+            if (document.querySelector("input[name='_honey']").value !== "") {
+                e.preventDefault();
+                showSnackbar("Spam detected (honeypot)", true);
+                return;
+            }
+
+            // 2. Time-based protection
+            if (elapsedSeconds < 3) {
+                e.preventDefault();
+                showSnackbar("You are too fast! Try again.", true);
+                return;
+            }
+
+            // 3. Behavior check
+            if (!userActive) {
+                e.preventDefault();
+                showSnackbar("Bot behavior detected.", true);
+                return;
+            }
+
+            // 4. Spam keyword detection
+            if (spamKeywords.some(word => message.includes(word))) {
+                e.preventDefault();
+                showSnackbar("Spam content blocked!", true);
+                return;
+            }
+
+            // 5. Entropy check (bots write repetitive text)
+            let uniqueChars = new Set(message).size;
+            let entropyScore = uniqueChars / message.length;
+
+            if (entropyScore < 0.15) { // repeated letters like: "aaaaa", "hellohellohello"
+                e.preventDefault();
+                showSnackbar("Suspicious message pattern", true);
+                return;
+            }
+
+            // 6. Duplicate message blocker (localStorage)
+            if (localStorage.getItem("lastMsgHash") === simpleHash(message)) {
+                e.preventDefault();
+                showSnackbar("Duplicate message blocked.", true);
+                return;
+            }
+
+            // Save last message
+            localStorage.setItem("lastMsgHash", simpleHash(message));
+
+            // 7. Everything valid → allow submit
+            showSnackbar("Message sent successfully!");
+        });
+
+
+        // Snackbar function
+        function showSnackbar(message, type) {
+            snackbarMsg.textContent = message;
+
+            snackbar.classList.remove("error");
+            if (type === "error") snackbar.classList.add("error");
+
+            snackbar.classList.add("show");
+
+            setTimeout(() => {
+                snackbar.classList.remove("show");
+            }, 3000);
+        }
 
         /* -----------------------------------
            CV Download
@@ -3082,7 +3206,7 @@
         const downloadCvBtn = document.getElementById('download-cv');
 
         if (downloadCvBtn) {
-            downloadCvBtn.href = "your-cv.pdf"; // <-- add your file here
+            downloadCvBtn.href = "Niket-Mishra-CV.pdf"; // <-- add your file here
             downloadCvBtn.setAttribute("download", "Niket-Mishra-CV.pdf");
 
             downloadCvBtn.addEventListener('click', () => {
