@@ -3186,20 +3186,7 @@
         });
 
 
-        // Snackbar function
-        function showSnackbar(message, type) {
-            snackbarMsg.textContent = message;
-
-            snackbar.classList.remove("error");
-            if (type === "error") snackbar.classList.add("error");
-
-            snackbar.classList.add("show");
-
-            setTimeout(() => {
-                snackbar.classList.remove("show");
-            }, 3000);
-        }
-
+        
         /* -----------------------------------
            CV Download
         ----------------------------------- */
