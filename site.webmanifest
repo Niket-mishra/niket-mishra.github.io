@@ -1,9 +1,15 @@
 {
-  "name": "Niket Mishra Portfolio",
-  "short_name": "Portfolio",
-  "start_url": ".",
+  "name": "Niket Mishra",
+  "short_name": "Niket",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#6366f1",
-  "icons": []
+  "background_color": "#ffffff",
+  "theme_color": "#6c47ff",
+  "icons": [
+    {
+      "src": "favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
 }

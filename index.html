@@ -31,28 +31,35 @@
         content="Explore the personal portfolio of Niket Mishra — passionate about design automation, machine intelligence, and empowering creators through modular, emotionally resonant web experiences." />
     <meta name="twitter:image" content="https://niket-mishra.github.io/twitter-img.png" />
 
-    <!-- Canonical URL -->
+    <!-- Canonical -->
     <link rel="canonical" href="https://niket-mishra.github.io/" />
 
-    <!-- Favicon & Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <!-- Favicon & Icons (fixed paths for GitHub Pages) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="icon" href="favicon.ico" />
 
-    <!-- Preconnect for Faster Load -->
+    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Fonts & Icons -->
+    <!-- Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap"
         rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js"></script>
+
+    <!-- Your Styles (unchanged) -->
     <style>
         /* Base Styles & Variables */
         :root {
@@ -328,11 +335,47 @@
 
         .menu-toggle {
             display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
             color: var(--text-color);
-            z-index: 1001;
+            cursor: pointer;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            
+            position: relative;
         }
+
+        /* Icons stay in center — no absolute positioning */
+        .menu-toggle i {
+            transition: opacity .25s ease, transform .25s ease;
+            position: relative;
+        }
+
+        /* Default state */
+        .icon-open {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+
+        /* Hidden close icon */
+        .icon-close {
+            opacity: 0;
+            transform: rotate(-90deg) scale(0.6);
+        }
+
+        /* When menu opens */
+        .menu-toggle.active .icon-open {
+            opacity: 0;
+            transform: rotate(90deg) scale(0.6);
+        }
+
+        .menu-toggle.active .icon-close {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+
 
         /* Hero Section with Typing Effect */
         .hero {
@@ -688,13 +731,14 @@
 
         .stat-box {
             background: var(--card-bg);
-            padding: 1.5rem;
+            padding: 1.2rem 1rem;
             border-radius: 15px;
             text-align: center;
             backdrop-filter: var(--blur);
             border: 1px solid var(--glass-border);
             transition: transform .35s cubic-bezier(.25, .8, .25, 1),
                 box-shadow .35s cubic-bezier(.25, .8, .25, 1);
+            will-change: transform;
         }
 
         .stat-box:hover {
@@ -704,68 +748,201 @@
 
         .stat-box h3 {
             font-size: clamp(1.8rem, 3vw, 2.2rem);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
+        .stat-box p {
+            margin: 0;
+            /* remove extra gap */
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+
         /* Contact Section */
         .contact-container {
             display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
             gap: 3rem;
+            margin-top: 2rem;
+            box-sizing: border-box;
+            /* allow wrapping on very narrow windows but prefer two columns */
+            flex-wrap: wrap;
         }
 
-        .contact-info {
-            flex: 1;
-        }
-
+        /* Prevent overflow on long content and make sizing predictable */
+        .contact-info,
         .contact-form {
-            flex: 1;
+            box-sizing: border-box;
+            flex: 1 1 45%;
+            /* grow | shrink | basis => two columns each ~45% */
+            min-width: 300px;
+            /* prevents the column from becoming too narrow */
+            max-width: 100%;
+        }
+
+        /* Left side info */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            align-self: stretch;
+            word-break: break-word;
+            /* avoid overflow from long strings */
+        }
+
+        /* Remove link underline for phone & email and keep accessible color */
+        .contact-info a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color .2s ease;
+        }
+
+        .contact-info a:focus,
+        .contact-info a:hover {
+            color: var(--primary);
+            text-decoration: none;
+            outline: none;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            /* perfect equal spacing */
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-info p i {
+            font-size: 1rem;
+            color: var(--primary);
+        }
+
+        .contact-info p a {
+            text-decoration: none;
+            /* removes underline */
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .contact-info p a:hover {
+            color: var(--primary);
+        }
+
+
+        /* Contact card / right side form */
+        .contact-form {
             background: var(--card-bg);
             padding: 2.2rem;
             border-radius: 20px;
             backdrop-filter: var(--blur);
             border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+            transition: transform .35s cubic-bezier(.25, .8, .25, 1),
+                box-shadow .35s cubic-bezier(.25, .8, .25, 1);
+            align-self: stretch;
         }
 
+
+        /* lift on hover for desktop pointer devices */
+        @media (hover: hover) and (pointer: fine) {
+            .contact-form:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+            }
+        }
+
+        /* Form groups and labels */
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.4rem;
             position: relative;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
+            margin-bottom: 0.45rem;
+            font-weight: 600;
             color: var(--text-color);
+            font-size: 0.95rem;
         }
 
+        /* Inputs & textarea */
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 1rem;
+            padding: 1.05rem 1.1rem;
             background: var(--input-bg);
             border: 1px solid var(--glass-border);
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 1rem;
             color: var(--text-color);
-            transition: transform .35s cubic-bezier(.25, .8, .25, 1),
-                box-shadow .35s cubic-bezier(.25, .8, .25, 1);
+            transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+            box-sizing: border-box;
         }
 
+        /* Focus / accessible ring */
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 0 12px rgba(99, 102, 241, 0.20);
+            transform: translateY(-1px);
         }
 
+        /* Textarea size */
         .form-group textarea {
-            min-height: 150px;
+            min-height: 160px;
             resize: vertical;
         }
+
+        /* Button behaviour — DESKTOP: auto-width, MOBILE: full-width */
+        .contact-form .btn {
+            display: inline-block;
+            width: auto;
+            /* prevents overflow on desktop */
+            min-width: 150px;
+            /* makes it tappable & visually balanced */
+            padding: 0.75rem 1.25rem;
+            font-size: 0.97rem;
+            align-self: flex-start;
+            /* keep to left inside form */
+            white-space: nowrap;
+            /* avoid wrapping inside button */
+            box-sizing: border-box;
+        }
+
+        /* If you used .btn-outline inside form, keep same sizing */
+        .contact-form .btn.btn-outline {
+            min-width: 150px;
+        }
+
+        /* Make sure very long words in inputs wrap instead of pushing width */
+        .form-group input,
+        .form-group textarea,
+        .contact-info p {
+            overflow-wrap: anywhere;
+        }
+
+        /* Small desktop fix: if viewport is narrow and would cause two narrow columns, let them stack */
+        @media (max-width: 980px) {
+
+            .contact-info,
+            .contact-form {
+                flex: 1 1 100%;
+                min-width: 0;
+            }
+
+            /* make the submit button full width when stacked */
+            .contact-form .btn {
+                width: 100%;
+                min-width: 0;
+            }
+        }
+
 
         /* Footer */
         footer {
@@ -955,6 +1132,49 @@
             will-change: transform;
         }
 
+        .theme-icon-toggle {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            transition: background .3s, transform .3s;
+            font-size: 1.3rem;
+        }
+
+        .theme-icon-toggle:hover {
+            transform: translateY(-3px);
+            background: var(--glass-border);
+        }
+
+        .theme-icon-toggle i {
+            color: var(--text-color);
+            transition: color .3s, transform .3s;
+        }
+
+        .theme-icon-toggle:active i {
+            transform: scale(0.85);
+        }
+
+        #download-cv {
+            width: 180px !important;
+            /* fixed width */
+            padding: 0.75rem 0 !important;
+            text-align: center !important;
+            font-size: 0.95rem !important;
+            border-radius: 50px;
+            align-self: flex-start;
+            /* keeps alignment in contact-info */
+            white-space: nowrap;
+            color: white !important;
+        }
+
+
 
         @keyframes particleFloat {
             0% {
@@ -1060,10 +1280,17 @@
         /* Responsive Design */
         @media (max-width: 992px) {
 
-            .hero-content,
-            .about-content,
-            .contact-container {
-                flex-direction: column;
+            /* ===== Global spacing ===== */
+            section {
+                padding: 4rem 0;
+            }
+
+            .container {
+                padding: 0 1.2rem;
+            }
+
+            /* ===== Headings ===== */
+            h2 {
                 text-align: center;
             }
 
@@ -1072,42 +1299,329 @@
                 transform: translateX(-50%);
             }
 
+            /* ===== HERO ===== */
+            .hero {
+                padding-top: 8rem;
+                padding-bottom: 4rem;
+                text-align: center;
+                animation: fadeHero 1s ease-out;
+            }
+
+            @keyframes fadeHero {
+                0% {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .hero-content {
+                flex-direction: column;
+                gap: 2.5rem;
+            }
+
+            .hero-buttons .btn {
+                transition: transform .35s ease, box-shadow .35s ease;
+            }
+
+            .hero-buttons .btn:hover {
+                transform: translateY(-4px) scale(1.03);
+                box-shadow: 0 10px 22px rgba(0, 0, 0, 0.15);
+            }
+
+            .hero-image img {
+                max-width: 85%;
+                margin: 0 auto;
+                animation: smoothPop 1.4s ease;
+            }
+
+            @keyframes smoothPop {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.92) translateY(25px);
+                }
+
+                100% {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
+
+            /* ===== ABOUT ===== */
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 2.5rem;
+                animation: fadeSlide 1s ease;
+            }
+
+            @keyframes fadeSlide {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Stats grid */
             .about-stats {
                 grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-box {
+                padding: 1.4rem 1rem;
+                height: 150px;
+                min-height: 150px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                /* Hover effect for tablets */
+                transition: transform .35s ease, box-shadow .35s ease;
+            }
+
+            .stat-box:hover {
+                transform: translateY(-6px) scale(1.02);
+                box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.15);
+            }
+
+            /* ===== SKILLS ===== */
+            .skills-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .skill-card {
+                padding: 1.5rem;
+                transition: transform .35s ease, box-shadow .35s ease, background .4s ease;
+                animation: fadeUp .85s ease both;
+            }
+
+            .skill-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.15);
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            @keyframes fadeUp {
+                0% {
+                    opacity: 0;
+                    transform: translateY(25px) scale(.97);
+                }
+
+                100% {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+            }
+
+            /* ===== PROJECTS ===== */
+            .project-filters {
+                flex-wrap: wrap;
+                gap: 0.8rem;
+                justify-content: center;
+                animation: fadePop .7s ease-in-out;
+            }
+
+            @keyframes fadePop {
+                0% {
+                    transform: scale(.95);
+                    opacity: 0;
+                }
+
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.8rem;
+            }
+
+            .project-card {
+                margin: 0 auto;
+                transition: transform .35s ease, box-shadow .35s ease;
+                animation: cardEntry .9s ease both;
+            }
+
+            @keyframes cardEntry {
+                0% {
+                    opacity: 0;
+                    transform: translateY(25px) scale(.97);
+                }
+
+                100% {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+            }
+
+            .project-card:hover {
+                transform: translateY(-8px) scale(1.03);
+                box-shadow: 0 15px 28px rgba(0, 0, 0, 0.2);
+            }
+
+            /* ===== TESTIMONIALS ===== */
+            .testimonials-slider {
+                max-width: 90%;
+                animation: fadeSlide 1s ease;
+            }
+
+            .testimonial {
+                padding: 1.5rem;
+                animation: fadeUp .6s ease;
+            }
+
+            /* ===== CONTACT ===== */
+            .contact-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 2.5rem;
+                animation: fadeUp .8s ease;
+            }
+
+            .contact-form {
+                padding: 2rem;
+                transition: transform .35s ease, box-shadow .35s ease;
+            }
+
+            .contact-form:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            }
+
+            /* ===== FOOTER ===== */
+            footer {
+                text-align: center;
+                animation: fadeUp 1s ease;
+            }
+
+            .footer-social a {
+                transition: transform .35s ease, box-shadow .35s ease;
+            }
+
+            .footer-social a:hover {
+                transform: translateY(-5px) scale(1.08);
+                box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
+            }
+
+            /* ===== Floating icons (tablet-optimized) ===== */
+            .floating-icons {
+                opacity: 0.4;
+                filter: blur(2px);
+                animation: softPulse 6s ease-in-out infinite alternate;
+            }
+
+            @keyframes softPulse {
+                0% {
+                    transform: scale(1);
+                    opacity: .3;
+                }
+
+                100% {
+                    transform: scale(1.05);
+                    opacity: .5;
+                }
+            }
+
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                /* optional — stack neatly */
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+                /* optional: full-width button */
+                max-width: 320px;
+                /* keeps it premium looking */
+                margin: 0 auto;
+            }
+
+            .testimonials-slider {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 90%;
+            }
+
+            .contact-container {
+                display: flex;
+                flex-direction: row;
+                /* keep horizontal */
+                gap: 2rem;
+                text-align: left;
+            }
+
+            .contact-info,
+            .contact-form {
+                width: 50%;
             }
         }
 
         @media (max-width: 768px) {
+
+            .contact-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-info,
+            .contact-form {
+                width: 100%;
+            }
+
+            .contact-form {
+                margin-top: 1.2rem;
+            }
+
+            /* Section spacing */
             section {
                 padding: 4rem 0;
             }
 
+            /* Mobile Menu */
             .menu-toggle {
-                display: block;
+                display: block !important;
                 position: relative;
                 z-index: 1200;
+                animation: fadeIn 0.6s ease;
             }
 
             nav {
                 position: fixed;
                 top: 0;
-                left: -100%;
-                width: 70%;
+                left: 0;
+                width: 75%;
                 height: 100vh;
                 background: var(--card-bg);
                 backdrop-filter: var(--blur);
-                transition: transform 0.5s cubic-bezier(.4, 0, .2, 1);
+                transform: translateX(-100%);
+                transition: transform .45s ease;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 border-right: 1px solid var(--glass-border);
                 z-index: 1000;
-                transform: translateX(-100%);
-
             }
 
+
             nav.active {
-                left: 0;
                 transform: translateX(0);
             }
 
@@ -1116,10 +1630,11 @@
                 align-items: center;
                 justify-content: center;
                 height: 100%;
+                gap: 1.5rem;
             }
 
             nav ul li {
-                margin: 1.5rem 0;
+                margin: 0;
             }
 
             nav ul li a {
@@ -1128,14 +1643,291 @@
                 width: 100%;
                 text-align: center;
                 font-size: 1.2rem;
+                opacity: 0;
+                animation: fadeUp 0.6s ease forwards;
             }
 
+            nav.active ul li:nth-child(1) a {
+                animation-delay: 0.1s;
+            }
+
+            nav.active ul li:nth-child(2) a {
+                animation-delay: 0.2s;
+            }
+
+            nav.active ul li:nth-child(3) a {
+                animation-delay: 0.3s;
+            }
+
+            nav.active ul li:nth-child(4) a {
+                animation-delay: 0.4s;
+            }
+
+            nav.active ul li:nth-child(5) a {
+                animation-delay: 0.5s;
+            }
+
+            /* Hero */
             .hero {
                 padding-top: 8rem;
                 padding-bottom: 4rem;
+                text-align: center;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                gap: 3rem;
+                animation: fadeInUp 0.9s ease;
             }
 
             .hero-buttons {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                gap: 1rem;
+                animation: fadeInUp 1.2s ease;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 320px;
+                text-align: center;
+                transform: scale(1);
+                transition: transform .35s cubic-bezier(.25, .8, .25, 1),
+                    box-shadow .35s cubic-bezier(.25, .8, .25, 1);
+            }
+
+            .btn:hover {
+                transform: translateY(-5px) scale(1.03);
+                box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+            }
+
+            /* About Stats - stack & equal height */
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .stat-box {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 130px;
+                min-height: 130px;
+                margin: 0;
+            }
+
+            .stat-box:hover {
+                transform: translateY(-6px) scale(1.03);
+                box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+            }
+
+
+
+            .skills-container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 per row */
+                gap: 1.5rem;
+            }
+
+            .skill-card {
+                width: 100%;
+                transition: transform .35s cubic-bezier(.25, .8, .25, 1),
+                    box-shadow .35s cubic-bezier(.25, .8, .25, 1);
+            }
+
+            .skill-card:hover {
+                transform: translateY(-6px) scale(1.03);
+            }
+
+            /* === PROJECTS 2 PER ROW === */
+            .projects-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .project-card {
+                width: 100%;
+                border-radius: 16px;
+                overflow: hidden;
+                /* keeps image tidy */
+                display: flex;
+                flex-direction: column;
+                /* ensures vertical stacking */
+                transition: transform .35s cubic-bezier(.25, .8, .25, 1),
+                    box-shadow .35s cubic-bezier(.25, .8, .25, 1);
+            }
+
+            /* Hover effect (smaller for mobile) */
+            .project-card:hover {
+                transform: translateY(-6px) scale(1.03);
+            }
+
+            /* === IMAGE ALWAYS ON TOP & NOT DISTORTED === */
+            .project-image {
+                width: 100%;
+                height: 160px;
+                /* smaller mobile height */
+                overflow: hidden;
+            }
+
+            .project-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                /* MAINTAINS PERFECT RATIO */
+                display: block;
+            }
+
+            /* === PROJECT INFO SECTION === */
+            .project-info {
+                padding: 1rem;
+                flex: 1;
+                /* ensures consistent height */
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 1rem;
+                /* NEW — adds spacing between title, text, tags, button */
+
+            }
+
+            /* Title */
+            .project-info h3 {
+                font-size: 1rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+                color: var(--text-color);
+            }
+
+            /* Description */
+            .project-info p {
+                font-size: 0.85rem;
+                line-height: 1.4;
+                margin-bottom: 0.8rem;
+                color: var(--gray);
+            }
+
+            /* Tags container */
+            .project-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.4rem;
+                margin-bottom: 1rem;
+            }
+
+            .project-tags span {
+                font-size: 0.7rem;
+                padding: 0.25rem 0.7rem;
+                border-radius: 12px;
+            }
+
+            /* Button at bottom (NO MOVEMENT) */
+            .project-info .btn {
+                width: 100%;
+                text-align: center;
+                padding: 0.7rem 1rem;
+                font-size: 0.85rem;
+                margin-top: auto;
+            }
+
+            .testimonials-slider {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .testimonial {
+                padding: 1.6rem;
+            }
+        }
+
+        /* --- Animations Used --- */
+        @keyframes slideFade {
+            from {
+                opacity: 0;
+                transform: translateX(-120px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+   MOBILE ADVANCED UI + ANIMATIONS ( ≤ 576px )
+   ============================================================ */
+        @media (max-width: 576px) {
+
+            /* Smooth reveal animation for all elements */
+            .reveal {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity .6s ease, transform .6s ease, filter .6s ease;
+                filter: blur(6px);
+            }
+
+            .reveal.visible {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+
+            /* Soft hover for mobile (tap triggers hover) */
+            .skill-card,
+            .project-card,
+            .stat-box,
+            .testimonial {
+                transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+            }
+
+            .skill-card:active,
+            .project-card:active,
+            .stat-box:active,
+            .testimonial:active {
+                transform: scale(0.97);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            }
+
+            /* -------- HERO -------- */
+            .hero-content {
+                animation: fadeUpMobile .7s ease both;
+            }
+
+            @keyframes fadeUpMobile {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Center hero buttons */
+            .hero-buttons {
+                justify-content: center;
+                width: 100%;
+                display: flex;
                 flex-direction: column;
                 gap: 1rem;
             }
@@ -1143,77 +1935,417 @@
             .btn {
                 width: 100%;
                 text-align: center;
+                animation: btnPopMobile .6s ease both;
             }
 
-            .about-stats {
-                grid-template-columns: 1fr;
+            @keyframes btnPopMobile {
+                0% {
+                    transform: scale(0.9);
+                    opacity: 0;
+                }
+
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
             }
+
+            /* -------- ABOUT -------- */
+
+            .about-image img {
+                width: 75%;
+                height: auto;
+                margin: 0 auto;
+                display: block;
+                object-fit: cover;
+                animation: aboutFloat .6s ease-out both;
+            }
+
+            @keyframes aboutFloat {
+                from {
+                    opacity: 0;
+                    transform: scale(0.92) translateY(15px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
+
+            /* Horizontal stat-boxes */
+            .about-stats {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: center;
+                align-items: stretch;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .stat-box {
+                flex: 1;
+                min-height: 120px;
+                height: 120px;
+                animation: fadeUpMobile .7s ease both;
+            }
+
+            .stat-box:hover {
+                transform: translateY(-4px) scale(1.02);
+            }
+
+            /* -------- SKILLS -------- */
 
             .skills-container {
-                grid-template-columns: 1fr;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 horizontal */
+                gap: 1.2rem;
             }
+
+            .skill-card {
+                padding: 1.3rem;
+            }
+
+            .skill-card:hover {
+                transform: translateY(-5px) scale(1.03);
+            }
+
+            /* Progress bar animation */
+            .progress-fill {
+                transition: width 1.2s ease;
+            }
+
+            /* -------- PROJECTS -------- */
 
             .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .project-filters {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .filter-btn {
-                text-align: center;
-            }
-
-            .hero-content {
-                gap: 3rem;
-            }
-
-            .hero-text p {
-                font-size: 1rem;
-            }
-
-            .project-card,
-            .skill-card,
-            .stat-box {
-                margin: 0 auto;
-            }
-
-        }
-
-        @media (max-width: 576px) {
-            .container {
-                padding: 0 1rem;
-            }
-
-            .hero-image img {
-                max-width: 100%;
-            }
-
-            .footer-social a {
-                width: 40px;
-                height: 40px;
-                font-size: 1.1rem;
-                margin: 0 0.3rem;
-            }
-
-            .snackbar {
-                min-width: 250px;
-                font-size: 0.9rem;
-            }
-
-            .skills-container,
-            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem;
             }
 
-            .project-card,
-            .skill-card {
+            .project-card {
                 border-radius: 15px;
+                overflow: hidden;
+            }
+
+            .project-card:hover {
+                transform: translateY(-6px) scale(1.03);
+            }
+
+            .project-image img {
+                transition: transform .35s ease;
+            }
+
+            .project-card:hover .project-image img {
+                transform: scale(1.08);
+            }
+
+            /* -------- TESTIMONIALS -------- */
+
+            .testimonial {
+                background: var(--card-bg);
+                border-radius: 18px;
+                padding: 1.6rem;
+                margin: 0 auto;
+                max-width: 92%;
+                animation: fadeUpMobile .7s ease both;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+                transform-origin: center;
+            }
+
+            .testimonial:hover {
+                transform: scale(1.02);
+            }
+
+            .testimonial img {
+                width: 55px;
+                height: 55px;
+                margin-bottom: 0.8rem;
+            }
+
+            .testimonial-text {
+                font-size: 0.9rem;
+            }
+
+            .testimonial-author {
+                font-size: 0.95rem;
+                margin-top: 0.4rem;
+            }
+
+            /* -------- CONTACT -------- */
+
+            .contact-container {
+                flex-direction: column;
+                gap: 1.6rem;
+                text-align: center;
+                animation: fadeUpMobile .8s ease both;
+            }
+
+            .contact-form {
+                width: 90%;
+                margin: 0 auto;
+                padding: 1.6rem;
+                border-radius: 16px;
+                transition: transform .3s ease;
+            }
+
+            .contact-form:hover {
+                transform: translateY(-4px);
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 0.9rem;
+                font-size: 0.95rem;
+            }
+
+            /* Submit button */
+            .contact-form button {
+                width: 100%;
+                animation: btnPopMobile .7s ease both;
+            }
+
+            #download-cv {
+                width: 100% !important;
+                /* full-width only on phones */
+                max-width: 260px;
+                /* avoid stretching too much */
+                margin: 0 auto;
+                display: block;
+                color: var(--light);
+            }
+
+            /* -------- FOOTER -------- */
+
+            .footer-social a {
+                transition: transform .3s ease;
+            }
+
+            .footer-social a:active {
+                transform: scale(0.92);
             }
 
         }
+
+        @media (max-width: 450px) {
+
+            /* =============================
+       ABOUT SECTION IMPROVEMENTS
+    ==============================*/
+
+            /* Reduce image size without changing shape */
+            .about-image img {
+                width: 75% !important;
+                height: auto !important;
+                margin: 0 auto;
+                display: block;
+            }
+
+            /* Stat boxes stay horizontal, shrink naturally */
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.6rem;
+            }
+
+            .stat-box {
+                padding: 0.8rem 0.4rem;
+                height: auto;
+                /* No fixed height = no distortion */
+                min-height: 95px;
+                /* Maintains shape */
+                border-radius: 12px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                transition: transform .35s, box-shadow .35s;
+            }
+
+            .stat-box:hover {
+                transform: translateY(-4px) scale(1.02);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            }
+
+
+            /* =============================
+       SKILLS — HIDE DESCRIPTION
+    ==============================*/
+
+            .skill-card .skill-info p {
+                display: none !important;
+            }
+
+            .skill-card {
+                padding: 1.2rem;
+                border-radius: 15px;
+            }
+
+
+            /* =============================
+       PROJECTS — HIDE DESCRIPTION
+    ==============================*/
+
+            /* FIX PROJECT CARD SPACING */
+            .project-info {
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                /* tighter spacing */
+            }
+
+            /* Hide description */
+            .project-info p {
+                display: none !important;
+            }
+
+            /* Title adjustment */
+            .project-info h3 {
+                font-size: 0.95rem;
+                margin: 0;
+            }
+
+            /* FIX: SMALLER BUTTON SIZE */
+            .project-info .btn {
+                padding: 0.5rem 0.8rem !important;
+                font-size: 0.75rem !important;
+                border-radius: 8px;
+                width: 100%;
+                /* optional: remove if you want smaller width */
+                transform: none !important;
+                /* disables hover-grow on mobile */
+            }
+
+            /* Make tags smaller too */
+            .project-tags span {
+                font-size: 0.65rem;
+                padding: 0.2rem 0.6rem;
+            }
+
+
+            /* =============================
+       TESTIMONIAL — MAKE CARD UI
+    ==============================*/
+
+            .testimonials-slider {
+                max-width: 100%;
+                padding: 0 0.5rem;
+            }
+
+            .testimonials {
+                background: var(--bg);
+                padding: 1rem 0;
+            }
+
+            .testimonial {
+                width: 100%;
+                background: var(--card-bg);
+                border-radius: 16px;
+                padding: 1.4rem;
+                margin: 0.8rem auto;
+                box-shadow: 0 12px 26px rgba(0, 0, 0, 0.15);
+                transition: transform .35s, box-shadow .35s;
+            }
+
+            .testimonial:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 18px 34px rgba(0, 0, 0, 0.22);
+            }
+
+            .testimonial img {
+                width: 65px;
+                height: 65px;
+                border-radius: 50%;
+                margin-bottom: 1rem;
+            }
+
+            .testimonial-text {
+                font-size: 0.85rem;
+                line-height: 1.4;
+                margin-bottom: 0.6rem;
+            }
+
+            .testimonial-author {
+                font-size: 0.9rem;
+                font-weight: 600;
+            }
+
+            /* Card-like slider dots */
+            .slider-dots {
+                margin-top: 1rem;
+                gap: 0.3rem;
+            }
+
+            .dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                transition: width .25s ease;
+            }
+
+            .dot.active {
+                width: 22px;
+                border-radius: 5px;
+            }
+
+
+            /* =============================
+       CONTACT FORM — SMALLER
+    ==============================*/
+
+            .contact-form {
+                padding: 1.2rem !important;
+                border-radius: 15px;
+                box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15) !important;
+            }
+
+            .contact-form .form-group {
+                margin-bottom: 1.1rem !important;
+            }
+
+            .contact-form .form-group label {
+                font-size: 0.9rem;
+            }
+
+            .contact-form input,
+            .contact-form textarea {
+                padding: 0.8rem !important;
+                font-size: 0.9rem !important;
+                transition: background .25s ease, box-shadow .25s ease, transform .25s ease;
+            }
+
+            .contact-form input:hover,
+            .contact-form textarea:hover {
+                background: rgba(255, 255, 255, 0.12) !important;
+            }
+
+            .contact-form input:focus,
+            .contact-form textarea:focus {
+                box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25) !important;
+                transform: translateY(-1px);
+            }
+
+            .contact-form textarea {
+                min-height: 115px !important;
+            }
+
+            .contact-form button {
+                width: 100%;
+                font-size: 0.9rem !important;
+                padding: 0.8rem !important;
+                border-radius: 12px !important;
+                box-shadow: 0 5px 18px rgba(99, 102, 241, 0.25);
+                transition: transform .25s ease, box-shadow .25s ease;
+            }
+
+            .contact-form button:active {
+                transform: scale(0.96);
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        /* Reduced motion preference */
 
         @media (prefers-reduced-motion: reduce) {
             * {
@@ -1233,14 +2365,17 @@
             <a href="#home" class="logo" aria-label="Go to home" style="text-decoration: none;">Niket
                 M<span>.</span></a>
             <div class="nav-btns">
-                <div class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                    <span class="theme-icon"></span>
-                    <div class="toggle-thumb"></div>
+                <div id="theme-toggle" class="theme-icon-toggle" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
                 </div>
 
-                <button class="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
-                    <i class="fas fa-bars"></i>
-                </button>
+
+                <div class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars icon-open"></i>
+                    <i class="fas fa-times icon-close"></i>
+                </div>
+
+
             </div>
             <nav id="nav-menu" aria-label="Main Navigation">
                 <ul>
@@ -1544,36 +2679,41 @@
 
             <div class="contact-container">
 
+                <!-- LEFT CONTACT INFO -->
                 <div class="contact-info reveal">
 
-                    <p>I'm currently available for freelance work. If you have a project that you want to get started or
-                        think you need my help with something, then get in touch.</p>
-
-                    <p>
-                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                        &nbsp;&nbsp;Mumbai, India
+                    <p class="contact-intro">
+                        I'm currently available for freelance work. If you have a project you want to start or
+                        think you need my help with something, feel free to get in touch.
                     </p>
 
-                    <p>
-                        <i class="fas fa-envelope" aria-hidden="true"></i>
-                        <a href="mailto:niketmishraofficial@gmail.com">niketmishraofficial@gmail.com</a>
-                    </p>
+                    <!-- Contact Rows -->
+                    <div class="contact-row static">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Mumbai, India
+                    </div>
 
-                    <p>
-                        <i class="fas fa-phone" aria-hidden="true"></i>
-                        <a href="tel:+919021605329">+91 90216 05329</a>
-                    </p>
+                    <a href="mailto:niketmishraofficial@gmail.com" class="contact-row">
+                        <i class="fas fa-envelope"></i>
+                        niketmishraofficial@gmail.com
+                    </a>
 
-                    <p>
-                        <a href="#" class="btn" id="download-cv" aria-label="Download my CV">
-                            <i class="fas fa-download" aria-hidden="true"></i>
-                            Download CV
-                        </a>
-                    </p>
+                    <a href="tel:+919021605329" class="contact-row">
+                        <i class="fas fa-phone"></i>
+                        +91 90216 05329
+                    </a>
+
+                    <!-- Download CV Button -->
+                    <a href="#" class="btn contact-cv-btn" id="download-cv" aria-label="Download my CV">
+                        <i class="fas fa-download"></i>
+                        Download CV
+                    </a>
                 </div>
 
+                <!-- RIGHT CONTACT FORM -->
                 <div class="contact-form reveal delay-1">
                     <form id="contactForm">
+
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" required autocomplete="name"
@@ -1583,12 +2723,12 @@
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" id="email" name="email" required autocomplete="email"
-                                placeholder="your@email.com">
+                                placeholder="you@example.com">
                         </div>
 
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" name="message" required autocomplete="off"
+                            <textarea id="message" name="message" required
                                 placeholder="Tell me about your project..."></textarea>
                         </div>
 
@@ -1601,9 +2741,10 @@
     </section>
 
 
+
     <!-- Footer -->
     <footer>
-        <div class="container reveal">
+        <div class="container ">
 
             <div class="footer-social">
                 <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
@@ -1629,7 +2770,7 @@
 
 
     <!-- Scroll to top button -->
-    <div class="scroll-top reveal" id="scroll-top" aria-label="Scroll to top">
+    <div class="scroll-top" id="scroll-top" aria-label="Scroll to top">
         <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </div>
 
@@ -1716,24 +2857,20 @@
         const body = document.body;
 
         menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
             nav.classList.toggle('active');
 
-            if (nav.classList.contains('active')) {
-                menuToggle.innerHTML = '<i class="fas fa-times" aria-hidden="true"></i>';
-                body.style.overflow = 'hidden';
-            } else {
-                menuToggle.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
-                body.style.overflow = 'auto';
-            }
+            body.style.overflow = nav.classList.contains('active') ? 'hidden' : 'auto';
         });
 
         document.querySelectorAll('nav ul li a').forEach(link => {
             link.addEventListener('click', () => {
                 nav.classList.remove('active');
-                menuToggle.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
+                menuToggle.classList.remove('active');
                 body.style.overflow = 'auto';
             });
         });
+
 
 
         /* -----------------------------------
