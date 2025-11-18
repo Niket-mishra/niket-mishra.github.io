@@ -1,121 +1,160 @@
 // gsapAnimations.js
-// Requires global gsap, and ScrollTrigger & Observer loaded before this module imports.
-
 export function initGSAP() {
-  if (typeof gsap === 'undefined' || !gsap.ScrollTrigger) {
-    console.warn('GSAP or ScrollTrigger not loaded yet.');
-    return;
-  }
+  if (!window.gsap || !gsap.ScrollTrigger) return;
 
-  const { ScrollTrigger } = gsap;
-  gsap.registerPlugin(ScrollTrigger, gsap.Observer);
+  gsap.registerPlugin(ScrollTrigger);
 
-  // Parallax layers (multi-layer β)
-  // layers: floating-icons (particles), hero-image, hero-text
+  const isMobile = window.innerWidth <= 768;
+
+  /* -------------------------------
+     1. MOBILE-SAFE SCROLLTRIGGER
+  --------------------------------*/
+  const revealStart = isMobile ? "top 98%" : "top 90%";
+  const barStart = isMobile ? "top 96%" : "top 90%";
+
+  /* -------------------------------
+     2. PARALLAX (SCROLL)
+  --------------------------------*/
   const hero = document.querySelector('.hero');
-  if (!hero) return;
+  const heroText = hero?.querySelector('.hero-text');
+  const heroImgBox = hero?.querySelector('.hero-image');
+  const heroImg = heroImgBox?.querySelector('img');
+  const particles = hero?.querySelector('.floating-icons');
 
-  const heroText = hero.querySelector('.hero-text');
-  const heroImage = hero.querySelector('.hero-image');
-  const particlesLayer = hero.querySelector('.floating-icons');
-
-  // subtle scroll-based parallax for layers
-  gsap.to(heroText, {
-    yPercent: -8,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: hero,
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 0.6
-    }
-  });
-  gsap.to(heroImage, {
-    yPercent: -14,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: hero,
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 0.6
-    }
-  });
-  if (particlesLayer) {
-    gsap.to(particlesLayer, {
-      yPercent: -4,
-      ease: 'none',
+  if (hero) {
+    gsap.to(heroText, {
+      yPercent: -6,
+      ease: "none",
       scrollTrigger: {
         trigger: hero,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 0.7
+        start: "top top",
+        end: "bottom top",
+        scrub: 0.6
       }
+    });
+
+    gsap.to(heroImgBox, {
+      yPercent: -10,
+      ease: "none",
+      scrollTrigger: {
+        trigger: hero,
+        start: "top top",
+        end: "bottom top",
+        scrub: 0.6
+      }
+    });
+
+    if (particles) {
+      gsap.to(particles, {
+        yPercent: -4,
+        ease: "none",
+        scrollTrigger: {
+          trigger: hero,
+          start: "top top",
+          end: "bottom top",
+          scrub: 0.7
+        }
+      });
+    }
+  }
+
+  /* ----------------------------------------
+       3. POINTER PARALLAX (DESKTOP ONLY)
+  -----------------------------------------*/
+  if (!isMobile && hero) {
+    hero.addEventListener("pointermove", (e) => {
+      const rx = (e.clientX / innerWidth - 0.5) * 16;
+      const ry = (e.clientY / innerHeight - 0.5) * -12;
+
+      if (heroImg) gsap.to(heroImg, { x: rx, y: ry, duration: 0.9 });
+      if (heroText) gsap.to(heroText, { x: rx * 0.4, y: ry * 0.2, duration: 0.9 });
+      if (particles) gsap.to(particles, { x: rx * 0.15, y: ry * 0.08, duration: 1.1 });
+    });
+
+    hero.addEventListener("pointerleave", () => {
+      gsap.to([heroImg, heroText, particles], { x: 0, y: 0, duration: 0.8 });
     });
   }
 
-  // Hero parallax by pointer (deeper + layered movement)
-  const heroImg = heroImage ? heroImage.querySelector('img') : null;
-  hero.addEventListener('pointermove', (e) => {
-    const rx = (e.clientX / innerWidth - 0.5) * 18;
-    const ry = (e.clientY / innerHeight - 0.5) * -10;
-    // headshot moves most
-    if (heroImg) gsap.to(heroImg, { x: rx * 0.7, y: ry * 0.6, rotation: rx * 0.02, duration: 0.9, ease: 'power3.out' });
-    if (heroText) gsap.to(heroText, { x: rx * 0.32, y: ry * 0.18, duration: 0.9, ease: 'power3.out' });
-    if (particlesLayer) gsap.to(particlesLayer, { x: rx * 0.12, y: ry * 0.06, duration: 1.1, ease: 'sine.out' });
-  });
-  hero.addEventListener('pointerleave', () => {
-    if (heroImg) gsap.to(heroImg, { x: 0, y: 0, rotation: 0, duration: 0.9, ease: 'power3.out' });
-    if (heroText) gsap.to(heroText, { x: 0, y: 0, duration: 0.9, ease: 'power3.out' });
-    if (particlesLayer) gsap.to(particlesLayer, { x: 0, y: 0, duration: 0.9, ease: 'sine.out' });
-  });
+  /* ----------------------------------------
+      4. MOBILE PARALLAX (GYROSCOPE)
+  -----------------------------------------*/
+  if (isMobile && heroImg) {
+    window.addEventListener("deviceorientation", (e) => {
+      const rx = e.gamma * 0.7;
+      const ry = e.beta * -0.4;
 
-  // Enhanced reveals (ScrollTrigger powered) for .reveal elements
-  gsap.utils.toArray('.reveal').forEach((el, i) => {
-    gsap.fromTo(el, { y: 36, autoAlpha: 0, filter: 'blur(6px)' }, {
-      y: 0,
-      autoAlpha: 1,
-      filter: 'blur(0px)',
-      duration: 0.75,
-      ease: 'power3.out',
-      delay: i * 0.03,
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 90%',
-        toggleActions: 'play none none reverse',
-      }
+      gsap.to(heroImg, { x: rx, y: ry, duration: 1 });
     });
+  }
+
+  /* -------------------------------
+     5. REVEAL ANIMATIONS
+  --------------------------------*/
+  gsap.utils.toArray('.reveal').forEach((el, i) => {
+    gsap.fromTo(
+      el,
+      { y: 30, autoAlpha: 0, filter: "blur(4px)" },
+      {
+        y: 0,
+        autoAlpha: 1,
+        filter: "blur(0px)",
+        duration: 0.75,
+        ease: "power2.out",
+        delay: i * 0.04,
+        scrollTrigger: {
+          trigger: el,
+          start: revealStart,
+        }
+      }
+    );
   });
 
-  // Animate progress bars
-  gsap.utils.toArray('.progress-fill').forEach(fill => {
+  /* -------------------------------
+     6. PROGRESS BARS
+  --------------------------------*/
+  gsap.utils.toArray('.progress-fill').forEach((fill) => {
     gsap.set(fill, { width: 0 });
+
     ScrollTrigger.create({
       trigger: fill,
-      start: 'top 90%',
+      start: barStart,
       onEnter: () => {
-        gsap.to(fill, { width: `${fill.dataset.progress}%`, duration: 1.2, ease: 'power2.out' });
-      }
-    });
-  });
-
-  // Counters
-  gsap.utils.toArray('.stat-box h3[data-target]').forEach(node => {
-    const target = parseInt(node.dataset.target, 10) || 0;
-    let played = false;
-    ScrollTrigger.create({
-      trigger: node,
-      start: 'top 90%',
-      once: true,
-      onEnter: () => {
-        if (played) return;
-        played = true;
-        gsap.fromTo({ v: 0 }, { v: target, duration: 1.6, ease: 'power1.out',
-          onUpdate() { node.textContent = Math.ceil(this.targets()[0].v) + '+'; }
+        gsap.to(fill, {
+          width: `${fill.dataset.progress}%`,
+          duration: 1.2,
+          ease: "power2.out",
         });
       }
     });
   });
 
-  // slightly reduce tick rate for performance (optional)
-  if (gsap.ticker) gsap.ticker.fps(60);
+  /* -------------------------------
+     7. COUNTERS
+  --------------------------------*/
+  gsap.utils.toArray('.stat-box h3[data-target]').forEach((node) => {
+    const target = +node.dataset.target || 0;
+
+    ScrollTrigger.create({
+      trigger: node,
+      start: barStart,
+      once: true,
+      onEnter: () => {
+        gsap.fromTo(
+          { val: 0 },
+          {
+            val: target,
+            duration: 1.6,
+            ease: "power1.out",
+            onUpdate() {
+              node.textContent = Math.ceil(this.targets()[0].val) + "+";
+            }
+          }
+        );
+      }
+    });
+  });
+
+  /* Improve performance */
+  gsap.ticker.fps(60);
 }
